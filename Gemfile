@@ -75,4 +75,7 @@ group :test do
 
   # A library for setting up Ruby objects as test data. [https://github.com/thoughtbot/factory_bot_rails]
   gem "factory_bot_rails", "~> 6.2"
+
+  # Mocha is a mocking and stubbing library for Ruby [https://github.com/freerange/mocha]
+  gem "mocha", "~> 1.13"
 end
