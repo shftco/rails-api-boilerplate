@@ -72,4 +72,7 @@ end
 group :test do
   # Simple one-liner tests for common Rails functionality [https://github.com/thoughtbot/shoulda-matchers#minitest]
   gem "shoulda-matchers", "~> 4.0"
+
+  # A library for setting up Ruby objects as test data. [https://github.com/thoughtbot/factory_bot_rails]
+  gem "factory_bot_rails", "~> 6.2"
 end

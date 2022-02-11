@@ -88,6 +88,11 @@ GEM
       reline (>= 0.2.7)
     digest (3.1.0)
     erubi (1.10.0)
+    factory_bot (6.2.0)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.2.0)
+      factory_bot (~> 6.2.0)
+      railties (>= 5.0.0)
     globalid (1.0.0)
       activesupport (>= 5.0)
     i18n (1.9.1)
@@ -212,6 +217,7 @@ DEPENDENCIES
   awesome_print
   bootsnap
   debug
+  factory_bot_rails (~> 6.2)
   faker!
   letter_opener (~> 1.4, >= 1.4.1)
   pg (~> 1.1)
