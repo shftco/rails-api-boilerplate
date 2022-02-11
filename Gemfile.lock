@@ -101,6 +101,9 @@ GEM
     io-wait (0.2.1)
     irb (1.4.1)
       reline (>= 0.3.0)
+    jbuilder (2.11.5)
+      actionview (>= 5.0.0)
+      activesupport (>= 5.0.0)
     kaminari (1.2.2)
       activesupport (>= 4.1.0)
       kaminari-actionview (= 1.2.2)
@@ -233,6 +236,7 @@ DEPENDENCIES
   debug
   factory_bot_rails (~> 6.2)
   faker!
+  jbuilder
   kaminari (~> 1.2, >= 1.2.2)
   letter_opener (~> 1.4, >= 1.4.1)
   mocha (~> 1.13)
