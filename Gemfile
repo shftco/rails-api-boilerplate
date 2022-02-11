@@ -64,4 +64,7 @@ group :development do
 
   # Code style checking for Minitest files [https://github.com/rubocop/rubocop-minitest]
   gem "rubocop-minitest", require: false
+
+  # E-mail opener [https://github.com/ryanb/letter_opener]
+  gem "letter_opener", "~> 1.4", ">= 1.4.1"
 end
