@@ -11,4 +11,8 @@ Rails.application.routes.draw do
     get "/", to: "swagger#index", as: :root
     get "/data", to: "swagger#data", as: :data
   end
+
+  defaults format: :json do
+    # API routes
+  end
 end

@@ -15,7 +15,7 @@ gem "pg", "~> 1.1"
 gem "puma", "~> 5.0"
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
-# gem "jbuilder"
+gem "jbuilder"
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
@@ -82,3 +82,6 @@ end
 
 # Define and serve live-updating Swagger JSON for Ruby apps [https://github.com/fotinakis/swagger-blocks]
 gem "swagger-blocks", "~> 3.0"
+
+# Kaminari is a Scope & Engine based customizable and sophisticated paginator [https://github.com/kaminari/kaminari/]
+gem "kaminari", "~> 1.2", ">= 1.2.2"
