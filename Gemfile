@@ -82,3 +82,6 @@ end
 
 # Define and serve live-updating Swagger JSON for Ruby apps [https://github.com/fotinakis/swagger-blocks]
 gem "swagger-blocks", "~> 3.0"
+
+# Kaminari is a Scope & Engine based customizable and sophisticated paginator [https://github.com/kaminari/kaminari/]
+gem "kaminari", "~> 1.2", ">= 1.2.2"
