@@ -47,11 +47,6 @@ group :development, :test do
 
   # Pretty print your Ruby objects [https://github.com/awesome-print/awesome_print]
   gem "awesome_print"
-end
-
-group :development do
-  # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
-  # gem "spring"
 
   # A Ruby static code analyzer and formatter, based on the community Ruby style guide [https://github.com/rubocop/rubocop]
   gem "rubocop", require: false
@@ -64,6 +59,11 @@ group :development do
 
   # Code style checking for Minitest files [https://github.com/rubocop/rubocop-minitest]
   gem "rubocop-minitest", require: false
+end
+
+group :development do
+  # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
+  # gem "spring"
 
   # E-mail opener [https://github.com/ryanb/letter_opener]
   gem "letter_opener", "~> 1.4", ">= 1.4.1"
