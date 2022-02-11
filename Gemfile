@@ -79,3 +79,6 @@ group :test do
   # Mocha is a mocking and stubbing library for Ruby [https://github.com/freerange/mocha]
   gem "mocha", "~> 1.13"
 end
+
+# Define and serve live-updating Swagger JSON for Ruby apps [https://github.com/fotinakis/swagger-blocks]
+gem "swagger-blocks", "~> 3.0"

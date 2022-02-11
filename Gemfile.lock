@@ -201,6 +201,7 @@ GEM
     shoulda-matchers (4.5.1)
       activesupport (>= 4.2.0)
     strscan (3.0.1)
+    swagger-blocks (3.0.0)
     thor (1.2.1)
     timeout (0.2.0)
     tzinfo (2.0.4)
@@ -230,6 +231,7 @@ DEPENDENCIES
   rubocop-performance
   rubocop-rails
   shoulda-matchers (~> 4.0)
+  swagger-blocks (~> 3.0)
   tzinfo-data
 
 RUBY VERSION
