@@ -58,6 +58,11 @@ development:
 test:
   <<: *default
   database: rails_api_boilerplate_test
+  host: localhost
+  # ENV POSTGRES_USER and POSTGRES_PASSWORD set in CI, usually empty
+  # in local tests, where pg is usually running with no authentication required
+  username: <%= ENV['POSTGRES_USER'] %>
+  password: <%= ENV['POSTGRES_PASSWORD'] %>
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
