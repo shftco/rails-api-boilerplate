@@ -88,6 +88,11 @@ GEM
       reline (>= 0.2.7)
     digest (3.1.0)
     erubi (1.10.0)
+    factory_bot (6.2.0)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.2.0)
+      factory_bot (~> 6.2.0)
+      railties (>= 5.0.0)
     globalid (1.0.0)
       activesupport (>= 5.0)
     i18n (1.9.1)
@@ -109,6 +114,7 @@ GEM
     method_source (1.0.0)
     mini_mime (1.1.2)
     minitest (5.15.0)
+    mocha (1.13.0)
     msgpack (1.4.4)
     net-imap (0.2.3)
       digest
@@ -192,6 +198,8 @@ GEM
       rack (>= 1.1)
       rubocop (>= 1.7.0, < 2.0)
     ruby-progressbar (1.11.0)
+    shoulda-matchers (4.5.1)
+      activesupport (>= 4.2.0)
     strscan (3.0.1)
     thor (1.2.1)
     timeout (0.2.0)
@@ -210,8 +218,10 @@ DEPENDENCIES
   awesome_print
   bootsnap
   debug
+  factory_bot_rails (~> 6.2)
   faker!
   letter_opener (~> 1.4, >= 1.4.1)
+  mocha (~> 1.13)
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.2)
@@ -219,6 +229,7 @@ DEPENDENCIES
   rubocop-minitest
   rubocop-performance
   rubocop-rails
+  shoulda-matchers (~> 4.0)
   tzinfo-data
 
 RUBY VERSION
