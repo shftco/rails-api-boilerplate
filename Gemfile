@@ -68,3 +68,8 @@ group :development do
   # E-mail opener [https://github.com/ryanb/letter_opener]
   gem "letter_opener", "~> 1.4", ">= 1.4.1"
 end
+
+group :test do
+  # Simple one-liner tests for common Rails functionality [https://github.com/thoughtbot/shoulda-matchers#minitest]
+  gem "shoulda-matchers", "~> 4.0"
+end
