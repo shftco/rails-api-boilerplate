@@ -44,6 +44,9 @@ group :development, :test do
 
   # A library for generating fake data [https://github.com/faker-ruby/faker]
   gem "faker", git: "https://github.com/faker-ruby/faker.git", branch: "master"
+
+  # Pretty print your Ruby objects [https://github.com/awesome-print/awesome_print]
+  gem "awesome_print"
 end
 
 group :development do
