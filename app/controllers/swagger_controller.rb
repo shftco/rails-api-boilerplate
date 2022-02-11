@@ -26,6 +26,8 @@ class SwaggerController < ActionController::Base
   end
 
   SWAGGERED_CLASSES = [
+    Swagger::Models::Pagination,
+    Swagger::Models::Meta,
     self
   ].freeze
 
