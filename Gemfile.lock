@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/faker-ruby/faker.git
+  revision: cb606b81c9c8048a3b9b044a4619252d16b576ab
+  branch: master
+  specs:
+    faker (2.19.0)
+      i18n (>= 1.8.11, < 2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -193,6 +201,7 @@ PLATFORMS
 DEPENDENCIES
   bootsnap
   debug
+  faker!
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.2)
