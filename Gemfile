@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -44,5 +46,16 @@ end
 group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
-end
 
+  # A Ruby static code analyzer and formatter, based on the community Ruby style guide [https://github.com/rubocop/rubocop]
+  gem "rubocop", require: false
+
+  # An extension of RuboCop focused on code performance checks [https://github.com/rubocop/rubocop-performance]
+  gem "rubocop-performance", require: false
+
+  # A RuboCop extension focused on enforcing Rails best practices and coding conventions [https://github.com/rubocop/rubocop-rails]
+  gem "rubocop-rails", require: false
+
+  # Code style checking for Minitest files [https://github.com/rubocop/rubocop-minitest]
+  gem "rubocop-minitest", require: false
+end
