@@ -1,0 +1,64 @@
+inherit_from: .rubocop_todo.yml
+
+require:
+  - rubocop-rails
+  - rubocop-performance
+  - rubocop-minitest
+
+Rails:
+  Enabled: true
+
+AllCops:
+  NewCops: disable
+
+Metrics/AbcSize:
+  Max: 31
+  Exclude:
+    - 'test/**/*_test.rb'
+
+Metrics/MethodLength:
+  Max: 30
+  Exclude:
+    - 'test/**/*_test.rb'
+
+Metrics/BlockLength:
+  Max: 100
+  Exclude:
+    - 'test/**/*_test.rb'
+
+Metrics/ClassLength:
+  Exclude:
+    - 'test/**/*_test.rb'
+
+Style/Documentation:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/Lambda:
+  Enabled: false
+
+Style/HashEachMethods:
+  Enabled: true
+
+Style/HashTransformKeys:
+  Enabled: true
+
+Style/HashTransformValues:
+  Enabled: true
+
+Layout/SpaceAroundMethodCallOperator:
+  Enabled: true
+
+Lint/RaiseException:
+  Enabled: true
+
+Lint/StructNewOverride:
+  Enabled: true
+
+Style/ExponentialNotation:
+  Enabled: true
+
+Style/FrozenStringLiteralComment:
+  Enabled: true

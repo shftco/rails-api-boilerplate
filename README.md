@@ -1,3 +1,4 @@
+[![Ruby Style Guide](https://img.shields.io/badge/code_style-rubocop-brightgreen.svg)](https://github.com/rubocop/rubocop)
 ![Ruby Version](https://img.shields.io/badge/ruby_version-3.1.0-blue.svg)
 ![Rails Version](https://img.shields.io/badge/rails_version-7.0.2-c52f24.svg)
 
