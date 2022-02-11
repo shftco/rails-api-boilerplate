@@ -85,3 +85,6 @@ gem "swagger-blocks", "~> 3.0"
 
 # Kaminari is a Scope & Engine based customizable and sophisticated paginator [https://github.com/kaminari/kaminari/]
 gem "kaminari", "~> 1.2", ">= 1.2.2"
+
+# Useful, common monads in idiomatic Ruby [https://github.com/dry-rb/dry-monads]
+gem "dry-monads", "~> 1.4"
