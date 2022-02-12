@@ -103,3 +103,6 @@ gem "dry-validation", "~> 1.6"
 
 # Flexible authentication solution for Rails with Warden [https://github.com/heartcombo/devise]
 gem "devise", "~> 4.8", ">= 4.8.1"
+
+# Doorkeeper is an OAuth 2 provider for Rails and Grape [https://github.com/doorkeeper-gem/doorkeeper/]
+gem "doorkeeper", "~> 5.5", ">= 5.5.4"
