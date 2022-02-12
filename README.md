@@ -8,6 +8,10 @@
 
 ![cover](docs/cover.jpeg)
 
+# Documentations
+- [Swagger](docs/SWAGGER.md)
+- [Service generator](docs/SERVICE.md)
+
 # Installation
 ## Prerequisites
 - [Ruby](https://rvm.io/)
