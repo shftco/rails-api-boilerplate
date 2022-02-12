@@ -1,0 +1,31 @@
+# frozen_string_literal: true
+
+require "dry/monads/do"
+
+class <%= class_name %>Service::Update
+  include Dry::Monads[:result]
+  include Dry::Monads::Do.for(:call)
+
+  attr_reader :params, :record
+
+  def initialize(params:, record:)
+    @params = params
+    @record = record
+  end
+
+  def call
+    ActiveRecord::Base.transaction(requires_new: true) do
+      yield call_update_record
+    end
+  end
+
+  private
+
+  def call_update_record
+    if record.update(params)
+      Success(record)
+    else
+      Failure([:error, record.errors])
+    end
+  end
+end
