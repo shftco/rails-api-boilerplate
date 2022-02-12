@@ -5,16 +5,35 @@ class ServiceGenerator < Rails::Generators::NamedBase
 
   check_class_collision suffix: "Service"
 
+  class_option :actions, type: :array, default: [], banner: "create update"
+
+  ALLOWED_ACTIONS = %w[create update destroy list].freeze
+
   def create_service_file
-    %w[create update destroy list].each do |action|
-      template(
-        "#{action}.html.erb",
-        File.join("app/services/#{create_service_file_name}_service", create_file_path, "#{action}.rb")
-      )
-    end
+    check_validity!
+    options[:actions].size.zero? ? create_service_file_without_actions : create_service_file_with_actions
   end
 
   private
+
+  def create_service_file_without_actions
+    ALLOWED_ACTIONS.each do |action|
+      create_template(action)
+    end
+  end
+
+  def create_service_file_with_actions
+    options[:actions].each do |action|
+      create_template(action)
+    end
+  end
+
+  def create_template(action)
+    template(
+      "#{action}.html.erb",
+      File.join("app/services/#{create_service_file_name}_service", create_file_path, "#{action}.rb")
+    )
+  end
 
   def service_classes
     class_name.split("::")
@@ -38,5 +57,9 @@ class ServiceGenerator < Rails::Generators::NamedBase
       class_names[0] = "#{class_names.first.singularize.camelize}Service"
       class_names.join("::")
     end
+  end
+
+  def check_validity!
+    raise "Invalid actions: #{options[:actions].join(', ')}" unless options[:actions].all? { |action| ALLOWED_ACTIONS.include?(action) }
   end
 end
