@@ -1,0 +1,5 @@
+---
+en:
+  dry_validation:
+    errors:
+      invalid?: invalid

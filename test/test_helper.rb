@@ -5,6 +5,7 @@ require_relative "../config/environment"
 require "rails/test_help"
 require "shoulda/matchers"
 require "mocha/minitest"
+require "helpers/form_validator"
 
 class ActiveSupport::TestCase
   # Run tests in parallel with specified workers
@@ -14,6 +15,7 @@ class ActiveSupport::TestCase
   # fixtures :all
 
   include FactoryBot::Syntax::Methods
+  include Helpers::FormValidator
 end
 
 Shoulda::Matchers.configure do |config|

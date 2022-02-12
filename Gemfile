@@ -88,3 +88,12 @@ gem "kaminari", "~> 1.2", ">= 1.2.2"
 
 # Useful, common monads in idiomatic Ruby [https://github.com/dry-rb/dry-monads]
 gem "dry-monads", "~> 1.4"
+
+# Form object decoupled from models with validation, population and presentation. (https://github.com/trailblazer/reform)
+gem "reform", "~> 2.6"
+
+# Automatically load and include all common Rails form features. (https://github.com/trailblazer/reform-rails)
+gem "reform-rails", "~> 0.2.2"
+
+# A simple validation library (https://github.com/dry-rb/dry-validation)
+gem "dry-validation", "~> 1.6"
