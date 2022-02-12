@@ -8,7 +8,7 @@ scope :users do
   end
 
   scope module: :users do
-    devise_scope :users do
+    devise_scope :user do
       post 'sign_up', to: 'registrations#create', as: :user_registration
       post 'password', to: 'passwords#create', as: :user_password
       patch 'password', to: 'passwords#update', as: nil
