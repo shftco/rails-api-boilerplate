@@ -1,0 +1,8 @@
+Description:
+    Creates a form classes
+
+Example:
+    bin/rails generate form User
+
+    This will create:
+        app/forms/user_form/create.rb
