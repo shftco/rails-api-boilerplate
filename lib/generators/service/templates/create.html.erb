@@ -2,7 +2,7 @@
 
 require "dry/monads/do"
 
-class <%= class_name %>Service::Create
+class <%= service_class_name %>::Create
   include Dry::Monads[:result]
   include Dry::Monads::Do.for(:call)
 
