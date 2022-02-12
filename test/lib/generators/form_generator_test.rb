@@ -15,14 +15,14 @@ class FormGeneratorTest < Rails::Generators::TestCase
   end
 
   test 'generator creates form files' do
-    run_generator ["User"]
+    run_generator ["Seller"]
 
-    assert_file "app/forms/user_form/create.rb"
+    assert_file "app/forms/seller_form/create.rb"
   end
 
   test 'generator creates forms files with using module name' do
-    run_generator ["Facebook::Adset"]
+    run_generator ["Seller::Manager"]
 
-    assert_file "app/forms/facebook_form/adset/create.rb"
+    assert_file "app/forms/seller_form/manager/create.rb"
   end
 end
