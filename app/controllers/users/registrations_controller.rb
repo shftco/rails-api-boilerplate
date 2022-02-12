@@ -19,7 +19,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
       return render json: render_user(service.success, @client_app), status: :created if service.success?
 
-      render json: { errors: [service.failure[1]] }, status: :unprocessable_entity
+      render json: { errors: service.failure[1] }, status: :unprocessable_entity
     end
   end
 
@@ -30,7 +30,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     return if @client_app
 
-    render json: { errors: [{ client_id: [I18n.t('doorkeeper.errors.messages.invalid_client')] }] },
+    render json: { errors: { client_id: [I18n.t('doorkeeper.errors.messages.invalid_client')] } },
            status: :unauthorized
   end
 

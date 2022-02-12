@@ -16,13 +16,14 @@ class ApplicationController < ActionController::API
   end
 
   def to_json_form_errors(record)
-    errors = record.errors.messages.map do |key, messages|
-      messages.map do |message|
-        {
-          "#{key}": [message]
-        }
+    errors = {}
+
+    record.errors.messages.each do |key, messages|
+      messages.each do |message|
+        errors[key] = errors.fetch(key, []) << message
       end
-    end.flatten
+    end
+
     { errors: }.to_json
   end
 end
