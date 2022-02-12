@@ -70,7 +70,7 @@ group :development do
 end
 
 group :test do
-  # Making tests easy on the fingers and eyes (https://github.com/thoughtbot/shoulda)
+  # Making tests easy on the fingers and eyes [https://github.com/thoughtbot/shoulda]
   gem "shoulda", "~> 4.0"
 
   # Simple one-liner tests for common Rails functionality [https://github.com/thoughtbot/shoulda-matchers#minitest]
