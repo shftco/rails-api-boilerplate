@@ -1,0 +1,5 @@
+<p>Welcome <%= @email %>!</p>
+
+<p>You can confirm your account email through the link below:</p>
+
+<a href='<%= "#{ENV['FRONTEND_URL']}/confirm-account/#{@token}" %>'>Confirm my account</a>
