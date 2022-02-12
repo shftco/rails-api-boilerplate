@@ -23,6 +23,7 @@ module RailsApiBoilerplate
 
     config.generators do |g|
       g.test_framework :test_unit, fixture: false
+      g.orm :active_record, primary_key_type: :uuid
     end
 
     # Only loads a smaller set of middleware suitable for API only apps.
