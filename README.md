@@ -12,6 +12,7 @@
 - [Swagger](docs/SWAGGER.md)
 - [Service generator](docs/SERVICE.md)
 - [Form generator](docs/FORM.md)
+- [Search & Filter & Sort](docs/RANSACK.md)
 
 # Installation
 ## Prerequisites

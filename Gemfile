@@ -107,5 +107,8 @@ gem "devise", "~> 4.8", ">= 4.8.1"
 # Doorkeeper is an OAuth 2 provider for Rails and Grape [https://github.com/doorkeeper-gem/doorkeeper/]
 gem "doorkeeper", "~> 5.5", ">= 5.5.4"
 
-# Simple, efficient background processing for Ruby []
+# Simple, efficient background processing for Ruby [https://github.com/mperham/sidekiq]
 gem "sidekiq", "~> 6.4", ">= 6.4.1"
+
+# Object-based searching [https://github.com/activerecord-hackery/ransack]
+gem "ransack", github: "activerecord-hackery/ransack"
