@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
-class <%= form_class_name %>::Create < Reform::Form
+require 'reform/form/coercion'
+
+class <%= form_class_name %> < Reform::Form
+  feature Coercion
+
   property :foo
   property :bar
 

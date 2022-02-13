@@ -8,7 +8,7 @@ class FormGenerator < Rails::Generators::NamedBase
   def create_service_file
     template(
       "form.html.erb",
-      File.join("app/forms/#{create_form_file_name}_form", create_file_path, "create.rb")
+      File.join("app/forms/#{create_form_file_name}_form#{create_file_path}.rb")
     )
   end
 
@@ -21,7 +21,8 @@ class FormGenerator < Rails::Generators::NamedBase
   def create_file_path
     path = form_classes
     path.shift
-    path.join("/").underscore
+    path = path.join("/").underscore
+    path.empty? ? "" : "/#{path}"
   end
 
   def create_form_file_name
