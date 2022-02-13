@@ -26,8 +26,23 @@ class SwaggerController < ActionController::Base
   end
 
   SWAGGERED_CLASSES = [
+    ## Controllers ##
+    Swagger::Controllers::Users::TokensController,
+    Swagger::Controllers::Users::RegistrationsController,
+    Swagger::Controllers::Users::PasswordsController,
+    ## Models ##
     Swagger::Models::Pagination,
     Swagger::Models::Meta,
+    ## Inputs ##
+    Swagger::Inputs::User::SignInInput,
+    Swagger::Inputs::User::SignUpInput,
+    Swagger::Inputs::User::ResetPasswordInput,
+    Swagger::Inputs::User::UpdatePasswordInput,
+    ## Responses ##
+    Swagger::Responses::User::SignInResponse,
+    Swagger::Responses::User::SignUpResponse,
+    Swagger::Responses::User::ResetPasswordResponse,
+    Swagger::Responses::User::UpdatePasswordResponse,
     self
   ].freeze
 
@@ -42,16 +57,17 @@ class SwaggerController < ActionController::Base
   private
 
   def swagger_data
-    Swagger::Blocks.build_root_json(SWAGGERED_CLASSES)
+    swagger_data = Swagger::Blocks.build_root_json(SWAGGERED_CLASSES)
 
-    # Add this lines if you are using oauth2
-    # swagger_data[:components][:securitySchemes] = {
-    #   bearerAuth: {
-    #     type: 'http',
-    #     scheme: 'bearer',
-    #     bearerFormat: 'JWT'
-    #   }
-    # }
+    swagger_data[:components][:securitySchemes] = {
+      bearerAuth: {
+        type: 'http',
+        scheme: 'bearer',
+        bearerFormat: 'JWT'
+      }
+    }
+
+    swagger_data
   end
 end
 # rubocop:enable Rails/ApplicationController
