@@ -19,6 +19,7 @@ class ServiceGeneratorTest < Rails::Generators::TestCase
 
     %w[create update destroy list].each do |action|
       assert_file "app/services/seller_service/#{action}.rb"
+      assert_file "test/services/seller_service/#{action}_test.rb"
     end
   end
 
@@ -27,10 +28,12 @@ class ServiceGeneratorTest < Rails::Generators::TestCase
 
     %w[create update].each do |action|
       assert_file "app/services/seller_service/#{action}.rb"
+      assert_file "test/services/seller_service/#{action}_test.rb"
     end
 
     %w[destroy list].each do |action|
       assert_no_file "app/services/seller_service/#{action}.rb"
+      assert_no_file "test/services/seller_service/#{action}_test.rb"
     end
   end
 
@@ -39,6 +42,7 @@ class ServiceGeneratorTest < Rails::Generators::TestCase
 
     %w[create update destroy list].each do |action|
       assert_file "app/services/seller_service/manager/#{action}.rb"
+      assert_file "test/services/seller_service/manager/#{action}_test.rb"
     end
   end
 end

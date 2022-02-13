@@ -10,6 +10,12 @@ class FormGenerator < Rails::Generators::NamedBase
       "form.html.erb",
       File.join("app/forms/#{create_form_file_name}_form#{create_file_path}.rb")
     )
+
+    # test
+    template(
+      "form_test.html.erb",
+      File.join("test/forms/#{create_form_file_name}_form#{create_file_path}_test.rb")
+    )
   end
 
   private
