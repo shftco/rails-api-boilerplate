@@ -70,6 +70,9 @@ group :development do
 end
 
 group :test do
+  # Making tests easy on the fingers and eyes [https://github.com/thoughtbot/shoulda]
+  gem "shoulda", "~> 4.0"
+
   # Simple one-liner tests for common Rails functionality [https://github.com/thoughtbot/shoulda-matchers#minitest]
   gem "shoulda-matchers", "~> 4.0"
 
@@ -83,17 +86,23 @@ end
 # Define and serve live-updating Swagger JSON for Ruby apps [https://github.com/fotinakis/swagger-blocks]
 gem "swagger-blocks", "~> 3.0"
 
-# Kaminari is a Scope & Engine based customizable and sophisticated paginator [https://github.com/kaminari/kaminari/]
+# Kaminari is a Scope & Engine based customizable and sophisticated paginator [https://github.com/kaminari/kaminari]
 gem "kaminari", "~> 1.2", ">= 1.2.2"
 
 # Useful, common monads in idiomatic Ruby [https://github.com/dry-rb/dry-monads]
 gem "dry-monads", "~> 1.4"
 
-# Form object decoupled from models with validation, population and presentation. (https://github.com/trailblazer/reform)
+# Form object decoupled from models with validation, population and presentation [https://github.com/trailblazer/reform]
 gem "reform", "~> 2.6"
 
-# Automatically load and include all common Rails form features. (https://github.com/trailblazer/reform-rails)
+# Automatically load and include all common Rails form features. [https://github.com/trailblazer/reform-rails]
 gem "reform-rails", "~> 0.2.2"
 
-# A simple validation library (https://github.com/dry-rb/dry-validation)
+# A simple validation library [https://github.com/dry-rb/dry-validation]
 gem "dry-validation", "~> 1.6"
+
+# Flexible authentication solution for Rails with Warden [https://github.com/heartcombo/devise]
+gem "devise", "~> 4.8", ">= 4.8.1"
+
+# Doorkeeper is an OAuth 2 provider for Rails and Grape [https://github.com/doorkeeper-gem/doorkeeper/]
+gem "doorkeeper", "~> 5.5", ">= 5.5.4"

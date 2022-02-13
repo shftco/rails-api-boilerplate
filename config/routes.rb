@@ -12,6 +12,8 @@ Rails.application.routes.draw do
     get "/data", to: "swagger#data", as: :data
   end
 
+  draw :authentication
+
   defaults format: :json do
     # API routes
   end
