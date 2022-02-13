@@ -14,10 +14,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_12_195921) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "oauth_access_tokens", force: :cascade do |t|
+  create_table "oauth_access_tokens", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "resource_owner_type"
-    t.bigint "resource_owner_id"
-    t.bigint "application_id", null: false
+    t.uuid "resource_owner_id"
+    t.uuid "application_id", null: false
     t.string "token", null: false
     t.string "refresh_token"
     t.integer "expires_in"
@@ -31,7 +31,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_12_195921) do
     t.index ["token"], name: "index_oauth_access_tokens_on_token", unique: true
   end
 
-  create_table "oauth_applications", force: :cascade do |t|
+  create_table "oauth_applications", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
     t.string "uid", null: false
     t.string "secret", null: false
