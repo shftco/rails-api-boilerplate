@@ -1,0 +1,25 @@
+# frozen_string_literal: true
+
+require "test_helper"
+
+class <%= form_class_name %>Test < ActiveSupport::TestCase
+  def validate(user: <%= class_name %>.new, payload: {})
+    form = <%= form_class_name %>.new(user)
+    form.validate(payload)
+    form
+  end
+
+  test 'validate#foo' do
+    success?(validate(payload: { foo: 'test' }), :foo)
+    filled?(validate(payload: { foo: nil }), :foo)
+    filled?(validate(payload: { foo: '' }), :foo)
+    invalid?(validate(payload: { foo: 'invalid foo' }), :foo)
+  end
+
+  test 'validate#bar' do
+    success?(validate(payload: { bar: 'test' }), :bar)
+    filled?(validate(payload: { bar: nil }), :bar)
+    filled?(validate(payload: { bar: '' }), :bar)
+    min_size?(validate(payload: { bar: '12345' }), :bar, 6)
+  end
+end
