@@ -35,4 +35,19 @@ class RegistrationsControllerTest < ActionDispatch::IntegrationTest
     assert_equal 1, error_count(response)
     assert_response :unprocessable_entity
   end
+
+  test 'should not register with invalid client' do
+    user_params = attributes_for(:user)
+
+    assert_no_difference(['Doorkeeper::AccessToken.count', 'User.count'], 1) do
+      post(user_registration_url,
+           params: user_params,
+           as: :json)
+    end
+
+    assert error?(response, :client)
+    assert error_message?(response, :client, I18n.t('doorkeeper.errors.messages.invalid_client'))
+    assert_equal 1, error_count(response)
+    assert_response :bad_request
+  end
 end

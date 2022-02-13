@@ -30,8 +30,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     return if @client_app
 
-    render json: { errors: { client_id: [I18n.t('doorkeeper.errors.messages.invalid_client')] } },
-           status: :unauthorized
+    render json: { errors: { client: [I18n.t('doorkeeper.errors.messages.invalid_client')] } },
+           status: :bad_request
   end
 
   def registration_params
