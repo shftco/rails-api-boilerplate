@@ -33,6 +33,11 @@ class ServiceGenerator < Rails::Generators::NamedBase
       "#{action}.html.erb",
       File.join("app/services/#{create_service_file_name}_service", create_file_path, "#{action}.rb")
     )
+
+    template(
+      "#{action}_test.html.erb",
+      File.join("test/services/#{create_service_file_name}_service", create_file_path, "#{action}_test.rb")
+    )
   end
 
   def service_classes
