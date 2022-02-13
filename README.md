@@ -11,6 +11,7 @@
 # Documentations
 - [Swagger](docs/SWAGGER.md)
 - [Service generator](docs/SERVICE.md)
+- [Form generator](docs/FORM.md)
 
 # Installation
 ## Prerequisites
