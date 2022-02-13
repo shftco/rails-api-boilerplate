@@ -8,6 +8,8 @@ require "mocha/minitest"
 require "helpers/form_validator"
 require "helpers/body_parser"
 require "helpers/authentication"
+require "sidekiq/testing"
+require "helpers/sidekiq_minitest_support"
 
 class ActiveSupport::TestCase
   # Run tests in parallel with specified workers
@@ -20,6 +22,7 @@ class ActiveSupport::TestCase
   include Helpers::FormValidator
   include Helpers::BodyParser
   include Helpers::Authentication
+  include Helpers::SidekiqMinitestSupport
 end
 
 Shoulda::Matchers.configure do |config|
