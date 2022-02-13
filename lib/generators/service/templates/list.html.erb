@@ -6,7 +6,7 @@ class <%= service_class_name %>Service::List
   include Dry::Monads[:result]
   include Dry::Monads::Do.for(:call)
 
-  def call(pagination: nil, filter: nil, sort: nil)
-    # Success(records.page(pagination.page).per(pagination.per_page))
+  def call(pagination: nil, query: nil)
+    Success(records.ransack(query).result.page(pagination.page).per(pagination.per_page))
   end
 end

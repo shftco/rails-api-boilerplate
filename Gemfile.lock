@@ -1,4 +1,13 @@
 GIT
+  remote: https://github.com/activerecord-hackery/ransack.git
+  revision: 49a43fc9519408e47a4844d3cdbeb2838687041a
+  specs:
+    ransack (2.5.0)
+      activerecord (>= 5.2.4)
+      activesupport (>= 5.2.4)
+      i18n
+
+GIT
   remote: https://github.com/faker-ruby/faker.git
   revision: cb606b81c9c8048a3b9b044a4619252d16b576ab
   branch: master
@@ -327,6 +336,7 @@ DEPENDENCIES
   puma (~> 5.0)
   rack-cors
   rails (~> 7.0.2)
+  ransack!
   reform (~> 2.6)
   reform-rails (~> 0.2.2)
   rubocop
