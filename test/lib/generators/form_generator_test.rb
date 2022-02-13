@@ -10,19 +10,19 @@ class FormGeneratorTest < Rails::Generators::TestCase
 
   test 'generator runs without errors' do
     assert_nothing_raised do
-      run_generator ["arguments"]
+      run_generator ["Seller"]
     end
   end
 
   test 'generator creates form files' do
     run_generator ["Seller"]
 
-    assert_file "app/forms/seller_form/create.rb"
+    assert_file "app/forms/seller_form.rb"
   end
 
   test 'generator creates forms files with using module name' do
     run_generator ["Seller::Manager"]
 
-    assert_file "app/forms/seller_form/manager/create.rb"
+    assert_file "app/forms/seller_form/manager.rb"
   end
 end
