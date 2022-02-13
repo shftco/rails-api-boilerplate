@@ -7,6 +7,7 @@ require "shoulda/matchers"
 require "mocha/minitest"
 require "helpers/form_validator"
 require "helpers/body_parser"
+require "helpers/authentication"
 
 class ActiveSupport::TestCase
   # Run tests in parallel with specified workers
@@ -18,6 +19,7 @@ class ActiveSupport::TestCase
   include FactoryBot::Syntax::Methods
   include Helpers::FormValidator
   include Helpers::BodyParser
+  include Helpers::Authentication
 end
 
 Shoulda::Matchers.configure do |config|
