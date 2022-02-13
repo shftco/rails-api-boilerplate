@@ -11,11 +11,13 @@
 # Documentations
 - [Swagger](docs/SWAGGER.md)
 - [Service generator](docs/SERVICE.md)
+- [Form generator](docs/FORM.md)
 
 # Installation
 ## Prerequisites
 - [Ruby](https://rvm.io/)
 - [PostgreSQL](https://www.postgresql.org/)
+- [Redis](https://redis.io/)
 
 ## Installation
 - Install GEM dependencies:
