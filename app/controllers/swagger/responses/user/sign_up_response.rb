@@ -11,15 +11,24 @@ module Swagger
             key :type, :object
             key :required, %i[id email access_token token_type expires_in created_at]
 
-            property :id do
-              key :type, :string
-              key :format, :uuid
-              key :example, 'e7c8f8f0-e8e0-4b0f-b8b1-f8f8f8f8f8f8'
-            end
+            property :user do
+              key :type, :object
 
-            property :email do
-              key :type, :string
-              key :example, 'branchuser@test.com'
+              property :id do
+                key :type, :string
+                key :format, :uuid
+                key :example, 'e7c8f8f0-e8e0-4b0f-b8b1-f8f8f8f8f8f8'
+              end
+
+              property :type do
+                key :type, :string
+                key :example, 'User'
+              end
+
+              property :email do
+                key :type, :string
+                key :example, 'test@test.com'
+              end
             end
 
             property :access_token do
