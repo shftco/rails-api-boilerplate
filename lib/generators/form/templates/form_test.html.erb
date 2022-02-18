@@ -3,8 +3,8 @@
 require "test_helper"
 
 class <%= form_class_name %>Test < ActiveSupport::TestCase
-  def validate(user: <%= class_name %>.new, payload: {})
-    form = <%= form_class_name %>.new(user)
+  def validate(model: <%= class_name %>.new, payload: {})
+    form = <%= form_class_name %>.new(model)
     form.validate(payload)
     form
   end

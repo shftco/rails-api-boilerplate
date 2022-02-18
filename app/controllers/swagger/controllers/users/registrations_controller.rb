@@ -25,7 +25,7 @@ module Swagger
               end
             end
 
-            response 200 do
+            response 201 do
               key :description, 'successfull response'
               content :'application/json' do
                 schema do
