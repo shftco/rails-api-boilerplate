@@ -15,6 +15,10 @@ class ApplicationController < ActionController::API
     ParameterObject::Pagination.new(params[:page], params[:per_page])
   end
 
+  def query_object
+    ParameterObject::Query.new(params[:query])
+  end
+
   def to_json_form_errors(record)
     errors = {}
 
