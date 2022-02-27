@@ -17,3 +17,17 @@ create  test/services/facebook_service/adset/list_test.rb
 ```
 
 You can access service templates from `/lib/generators/service` folder.
+
+# Sample list service
+```ruby
+class UsersController < ApplicationController
+  def index
+    service = UserService::List.new.call(
+      query: query_object,
+      pagination: pagination_object
+    )
+
+    @users = service.success
+  end
+end
+```
