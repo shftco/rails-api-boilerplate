@@ -7,6 +7,6 @@ class <%= service_class_name %>::List
   include Dry::Monads::Do.for(:call)
 
   def call(pagination: nil, query: nil)
-    Success(records.ransack(query).result.page(pagination.page).per(pagination.per_page))
+    Success(records.ransack(query.query).result.page(pagination.page).per(pagination.per_page))
   end
 end

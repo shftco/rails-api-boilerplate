@@ -10,7 +10,7 @@ For example, the URL layout for searching and sorting users could looks like thi
 
 _Note that the sorting parameter ```s``` is nested within the ```query``` hash._
 
-When using JavaScript to create such a URL, a matching jQuery request could look like this:
+When using JavaScript to create such a URL, a matching axios request could look like this:
 
 ```javascript
 import axios from 'axios';
