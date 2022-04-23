@@ -81,6 +81,9 @@ group :test do
 
   # Mocha is a mocking and stubbing library for Ruby [https://github.com/freerange/mocha]
   gem "mocha", "~> 1.13"
+
+  # Allows you to focus on a few tests with ease without having to use command-line arguments [https://github.com/seattlerb/minitest-focus]
+  gem "minitest-focus"
 end
 
 # Define and serve live-updating Swagger JSON for Ruby apps [https://github.com/fotinakis/swagger-blocks]
