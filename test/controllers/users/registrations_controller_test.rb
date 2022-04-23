@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "test_helper"
+require 'test_helper'
 
 class RegistrationsControllerTest < ActionDispatch::IntegrationTest
   test 'should register and then generate access token' do

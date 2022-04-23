@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 class ServiceGenerator < Rails::Generators::NamedBase
-  source_root File.expand_path("templates", __dir__)
+  source_root File.expand_path('templates', __dir__)
 
-  check_class_collision suffix: "Service"
+  check_class_collision suffix: 'Service'
 
-  class_option :actions, type: :array, default: [], banner: "create update"
+  class_option :actions, type: :array, default: [], banner: 'create update'
 
   ALLOWED_ACTIONS = %w[create update destroy list].freeze
 
@@ -41,13 +41,13 @@ class ServiceGenerator < Rails::Generators::NamedBase
   end
 
   def service_classes
-    class_name.split("::")
+    class_name.split('::')
   end
 
   def create_file_path
     path = service_classes
     path.shift
-    path.join("/").underscore
+    path.join('/').underscore
   end
 
   def create_service_file_name
@@ -60,7 +60,7 @@ class ServiceGenerator < Rails::Generators::NamedBase
     else
       class_names = service_classes
       class_names[0] = "#{class_names.first.singularize.camelize}Service"
-      class_names.join("::")
+      class_names.join('::')
     end
   end
 
