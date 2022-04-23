@@ -5,6 +5,7 @@ require_relative "../config/environment"
 require "rails/test_help"
 require "shoulda/matchers"
 require "mocha/minitest"
+require 'minitest/focus'
 require "helpers/form_validator"
 require "helpers/body_parser"
 require "helpers/authentication"
