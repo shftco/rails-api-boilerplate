@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "test_helper"
+require 'test_helper'
 
 class PasswordsControllerTest < ActionDispatch::IntegrationTest
   test 'should send an email and returns a information message' do

@@ -62,3 +62,11 @@ Style/ExponentialNotation:
 
 Style/FrozenStringLiteralComment:
   Enabled: true
+
+Style/StringLiterals:
+  Enabled: true
+  EnforcedStyle: single_quotes
+
+Style/StringLiteralsInInterpolation:
+  Enabled: true
+  EnforcedStyle: single_quotes

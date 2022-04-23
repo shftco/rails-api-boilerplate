@@ -1,19 +1,19 @@
 # frozen_string_literal: true
 
 class FormGenerator < Rails::Generators::NamedBase
-  source_root File.expand_path("templates", __dir__)
+  source_root File.expand_path('templates', __dir__)
 
-  check_class_collision suffix: "Form"
+  check_class_collision suffix: 'Form'
 
   def create_service_file
     template(
-      "form.html.erb",
+      'form.html.erb',
       File.join("app/forms/#{create_form_file_name}_form#{create_file_path}.rb")
     )
 
     # test
     template(
-      "form_test.html.erb",
+      'form_test.html.erb',
       File.join("test/forms/#{create_form_file_name}_form#{create_file_path}_test.rb")
     )
   end
@@ -21,14 +21,14 @@ class FormGenerator < Rails::Generators::NamedBase
   private
 
   def form_classes
-    class_name.split("::")
+    class_name.split('::')
   end
 
   def create_file_path
     path = form_classes
     path.shift
-    path = path.join("/").underscore
-    path.empty? ? "" : "/#{path}"
+    path = path.join('/').underscore
+    path.empty? ? '' : "/#{path}"
   end
 
   def create_form_file_name
@@ -41,7 +41,7 @@ class FormGenerator < Rails::Generators::NamedBase
     else
       class_names = form_classes
       class_names[0] = "#{class_names.first.singularize.camelize}Form"
-      class_names.join("::")
+      class_names.join('::')
     end
   end
 end

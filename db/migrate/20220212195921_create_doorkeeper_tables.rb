@@ -52,7 +52,7 @@ class CreateDoorkeeperTables < ActiveRecord::Migration[7.0]
       #
       # Comment out this line if you want refresh tokens to be instantly
       # revoked after use.
-      t.string   :previous_refresh_token, null: false, default: ""
+      t.string   :previous_refresh_token, null: false, default: ''
     end
 
     add_index :oauth_access_tokens, :token, unique: true
