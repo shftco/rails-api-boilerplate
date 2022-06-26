@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class SwaggerController < ApplicationController
-  skip_before_action :doorkeeper_authorize!
-
   def index
     render html: nil, layout: 'layouts/swagger'
   end

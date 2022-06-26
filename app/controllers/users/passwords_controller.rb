@@ -2,8 +2,6 @@
 
 module Users
   class PasswordsController < Devise::PasswordsController
-    skip_before_action :doorkeeper_authorize!, only: %i[create update]
-
     def create
       self.resource = resource_class.send_reset_password_instructions(password_params)
       yield resource if block_given?
