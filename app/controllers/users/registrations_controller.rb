@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
-  skip_before_action :doorkeeper_authorize!, only: %i[create]
   before_action :check_client, only: %i[create]
 
   include DoorkeeperRegisterable
