@@ -40,7 +40,8 @@ class SwaggerDocs
     end
 
     server do
-      key :url, (Rails.env.development? ? 'http://localhost:3000' : 'https://api.rails.boilerplate').to_s
+      url_options = Rails.application.routes.default_url_options
+      key :url, "#{url_options[:protocol]}://#{url_options[:host]}"
       key :description, 'Rails API Boilerplate'
     end
   end
