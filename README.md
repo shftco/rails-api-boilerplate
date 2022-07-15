@@ -40,3 +40,8 @@
   rails db:reset
   ```
   `reset` is equivalent of `rails db:drop & rails db:setup`.
+
+-  Run the server
+   ```bash
+   ./bin/dev
+   ```
