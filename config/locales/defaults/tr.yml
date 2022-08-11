@@ -1,0 +1,110 @@
+---
+tr:
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one: yaklaşık 1 saat
+        other: yaklaşık %{count} saat
+      about_x_months:
+        one: yaklaşık 1 ay
+        other: yaklaşık %{count} ay
+      about_x_years:
+        one: yaklaşık 1 yıl
+        other: yaklaşık %{count} yıl
+      almost_x_years:
+        one: neredeyse 1 yıl
+        other: neredeyse %{count} yıl
+      half_a_minute: yarım dakika
+      less_than_x_minutes:
+        one: 1 dakikadan az
+        other: "%{count} dakikadan az"
+      less_than_x_seconds:
+        one: 1 saniyeden az
+        other: "%{count} saniyeden az"
+      over_x_years:
+        one: 1 yıldan fazla
+        other: "%{count} yıldan fazla"
+      x_days:
+        one: 1 gün
+        other: "%{count} gün"
+      x_minutes:
+        one: 1 dakika
+        other: "%{count} dakika"
+      x_months:
+        one: 1 ay
+        other: "%{count} ay"
+      x_seconds:
+        one: 1 saniye
+        other: "%{count} saniye"
+      x_years:
+        one: 1 yıl
+        other: "%{count} yıl"
+    prompts:
+      day: Gün
+      hour: Saat
+      minute: Dakika
+      month: Ay
+      second: Saniye
+      year: Yıl
+  time_helper:
+    ago: 'önce'
+  time:
+    am: 'öğleden önce'
+    formats:
+      default: "%a, %d %b %Y %H:%M:%S %z"
+      short: "%d %b %H:%M"
+      long: "%d %B, %Y %H:%M"
+    pm: 'öğleden sonra'
+  date:
+    abbr_day_names:
+    - Paz
+    - Pzt
+    - Sal
+    - Çar
+    - Per
+    - Cum
+    - Cts
+    abbr_month_names:
+    - 
+    - Ocak
+    - Şubat
+    - Mart
+    - Nisan
+    - Mayıs
+    - Haziran
+    - Temmuz
+    - Ağustos
+    - Eylül
+    - Ekim
+    - Kasım
+    - Aralık
+    day_names:
+    - Pazar
+    - Pazartesi
+    - Salı
+    - Çarşamba
+    - Perşembe
+    - Cuma
+    - Cumartesi
+    formats:
+      default: "%m-%d-%Y"
+      long: "%B %d, %Y"
+      short: "%b %d"
+    month_names:
+      -
+      - Ocak
+      - Şubat
+      - Mart
+      - Nisan
+      - Mayıs
+      - Haziran
+      - Temmuz
+      - Ağustos
+      - Eylül
+      - Ekim
+      - Kasım
+      - Aralık
+    order:
+      - :month
+      - :day
+      - :year

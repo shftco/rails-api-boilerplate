@@ -14,7 +14,7 @@ module RailsApiBoilerplate
     config.load_defaults 7.0
 
     I18n.load_path += Dir[Rails.root.join('config/locales/**/*.yml').to_s]
-    I18n.available_locales = %i[en]
+    I18n.available_locales = %i[en tr]
 
     config.i18n.default_locale = :en
 

@@ -1,0 +1,150 @@
+tr:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: 'Ad'
+        redirect_uri: 'Yönlendirme URL'
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: 'Yönlendirme URL için fragment kullanılamaz'
+              invalid_uri: 'Geçerli bir URI olmalıdır'
+              unspecified_scheme: 'Şema belirtilmelidir'
+              relative_uri: 'Mutlak URI olmalıdır'
+              secured_uri: 'HTTPS/SSL URI olmalıdır'
+              forbidden_uri: 'Sunucu tarafından yasaklanmıştır'
+            scopes:
+              not_match_configured: "Sunucu tarafında yapılandırılmış olan ile eşleşmiyor"
+  doorkeeper:
+    applications:
+      confirmations:
+        destroy: 'Silmek istediğinizden emin misiniz?'
+      buttons:
+        edit: 'Düzenle'
+        destroy: 'Sil'
+        submit: 'Gönder'
+        cancel: 'İptal'
+        authorize: 'Yetkilendir'
+      form:
+        error: 'Hata! Formunuzda hata olabilir'
+      help:
+        confidential: 'Gizli olarak kullanılacak bir uygulama olarak işaretlenir. Mobil uygulamalar veya tek sayfalık uygulamalar gibi.'
+        redirect_uri: 'Her URI için bir satır kullanın'
+        blank_redirect_uri: "Eğer uygulama için Client Credentials, Resource Owner Password Credentials veya başka bir yetki türü kullanılıyorsa, yönlendirme URI'lerini boş bırakın."
+        scopes: 'Yetkileri aralarında boşluk bırakarak ayırın'
+      edit:
+        title: 'Uygulamayı düzenle'
+      index:
+        title: 'Uygulamalarınız'
+        new: 'Yeni Uygulama'
+        name: 'Ad'
+        callback_url: 'Yönlendirme URL'
+        confidential: 'Gizli?'
+        actions: 'Eylemler'
+        confidentiality:
+          'yes': 'Evet'
+          'no': 'Hayır'
+      new:
+        title: 'Yeni Uygulama'
+      show:
+        title: "Uygulama: %{name}"
+        application_id: 'UID'
+        secret: 'Gizli'
+        secret_hashed: 'Gizli hashed'
+        scopes: 'Yetkiler'
+        confidential: 'Gizli'
+        callback_urls: 'Yönlendirme URLleri'
+        actions: 'Eylemler'
+        not_defined: 'Belirtilmemiş'
+
+    authorizations:
+      buttons:
+        authorize: 'Yetkilendir'
+        deny: 'Reddet'
+      error:
+        title: 'Bir hata oluştu'
+      new:
+        title: 'Oturum zorunlu '
+        prompt: "%{client_name} kullanıcı hesabınıza yetkilendirmek istiyor musunuz?"
+        able_to: 'Bu uygulama şunu yapabilir'
+      show:
+        title: 'Yetkilendirme kodu'
+      form_post:
+        title: 'Bu formu gönderin'
+
+    authorized_applications:
+      confirmations:
+        revoke: 'Emin misiniz?'
+      buttons:
+        revoke: 'İptal et'
+      index:
+        title: 'Yetkilendirilmiş uygulamalar'
+        application: 'Uygulama'
+        created_at: 'Oluşturulma tarihi'
+        date_format: '%Y-%m-%d %H:%M:%S'
+
+    pre_authorization:
+      status: 'Yetkilendirme durumu'
+
+    errors:
+      messages:
+        # Common error messages
+        invalid_request:
+          unknown: 'İstekte gerekli bir parametre eksik, desteklenmeyen bir parametre değeri içeriyor veya başka bir şekilde hatalı biçimlendirilmiş.'
+          missing_param: "%{value} parametresi eksik"
+          request_not_authorized: 'Talebin yetkilendirilmesi gerekiyor. Yetkilendirme isteği için gerekli parametre eksik veya geçersiz.'
+        invalid_redirect_uri: "İstenen yönlendirme URI'si hatalı biçimlendirilmiş veya istemci yönlendirme URI'si ile eşleşmiyor."
+        unauthorized_client: 'İstemci, bu yöntemi kullanarak bu isteği gerçekleştirme yetkisine sahip değil.'
+        access_denied: 'Kaynak sahibi veya yetkilendirme sunucusu, isteği reddetti.'
+        invalid_scope: 'İstenen kapsam geçersiz, bilinmiyor veya hatalı biçimlendirilmiş.'
+        invalid_code_challenge_method: 'Kod sorgulama yöntemi düz veya S256 olmalıdır.'
+        server_error: 'Yetkilendirme sunucusu, isteği yerine getirmesini engelleyen beklenmeyen bir koşulla karşılaştı.'
+        temporarily_unavailable: 'Yetkilendirme sunucusu, sunucunun geçici olarak aşırı yüklenmesi veya bakımı nedeniyle şu anda isteği işleyemiyor.'
+
+        # Configuration error messages
+        credential_flow_not_configured: 'Doorkeeper.configure.resource_owner_from_credentials yapılandırılmadığından Kaynak Sahibi Parolası Kimlik Bilgileri akışı başarısız oldu.'
+        resource_owner_authenticator_not_configured: 'Doorkeeper.configure.resource_owner_authenticator yapılandırılmadığından Kaynak Sahibi bulma başarısız oldu.'
+        admin_authenticator_not_configured: 'Doorkeeper.configure.admin_authenticator yapılandırılmamış olduğundan yönetici paneline erişim yasaktır.'
+
+        # Access grant errors
+        unsupported_response_type: 'Yetkilendirme sunucusu bu yanıt türünü desteklemiyor.'
+        unsupported_response_mode: 'Yetkilendirme sunucusu bu yanıt modunu desteklemiyor.'
+
+        # Access token errors
+        invalid_client: 'Bilinmeyen istemci, istemci kimlik doğrulamasının dahil edilmemesi veya desteklenmeyen kimlik doğrulama yöntemi nedeniyle istemci kimlik doğrulaması başarısız oldu.'
+        invalid_grant: "Sağlanan yetkilendirme yetkisi geçersiz, süresi doldu, iptal edildi, yetkilendirme talebinde kullanılan yeniden yönlendirme URI'si ile eşleşmiyor veya başka bir istemciye verildi."
+        unsupported_grant_type: 'Yetki verme türü, yetkilendirme sunucusu tarafından desteklenmiyor.'
+
+        invalid_token:
+          revoked: "Erişim tokeni geri alındı."
+          expired: "Erişim tokeni zaman aşımına uğradı ve kullanılmaya devam edemez."
+          unknown: "Erişim tokeni geçersiz."
+        revoke:
+          unauthorized: "Bu erişim tokeni için yetkilendirme yapılamadı."
+
+        forbidden_token:
+          missing_scope: "Bu kaynağa erişim için, %{oauth_scopes} yetkileri gerekli."
+
+    flash:
+      applications:
+        create:
+          notice: 'Uygulama oluşturuldu'
+        destroy:
+          notice: 'Uygulama silindi'
+        update:
+          notice: 'Uygulama güncellendi'
+      authorized_applications:
+        destroy:
+          notice: 'Yetkilendirilmiş uygulama silindi'
+
+    layouts:
+      admin:
+        title: 'Doorkeeper'
+        nav:
+          oauth2_provider: 'OAuth2 Sağlayıcı'
+          applications: 'Uygulamalar'
+          home: 'Anasayfa'
+      application:
+        title: 'OAuth yetkilendirmesi zorunlu'
