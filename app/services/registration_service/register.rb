@@ -1,16 +1,10 @@
 # frozen_string_literal: true
 
-require 'dry/monads/do'
-
-class RegistrationService::Register
+class RegistrationService::Register < Base
   include Dry::Monads[:result]
   include Dry::Monads::Do.for(:call)
 
-  attr_reader :params
-
-  def initialize(params:)
-    @params = params
-  end
+  option :params, type: Types::Hash
 
   def call
     ActiveRecord::Base.transaction(requires_new: true) do

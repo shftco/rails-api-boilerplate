@@ -95,14 +95,23 @@ gem 'kaminari', '~> 1.2', '>= 1.2.2'
 # Useful, common monads in idiomatic Ruby [https://github.com/dry-rb/dry-monads]
 gem 'dry-monads', '~> 1.4'
 
+# A simple validation library [https://github.com/dry-rb/dry-validation]
+gem 'dry-validation', '~> 1.6'
+
+# Typed structs and value objects [https://github.com/dry-rb/dry-struct]
+gem 'dry-struct', '~> 1.4'
+
+# Type system for Ruby supporting coercions, constraints and complex types like structs, value objects, enums etc [https://github.com/dry-rb/dry-types]
+gem 'dry-types', '~> 1.5', '>= 1.5.1'
+
+# DSL for declaring params and options of the initializer [https://github.com/dry-rb/dry-initializer]
+gem 'dry-initializer', '~> 3.1', '>= 3.1.1'
+
 # Form object decoupled from models with validation, population and presentation [https://github.com/trailblazer/reform]
 gem 'reform', '~> 2.6'
 
 # Automatically load and include all common Rails form features. [https://github.com/trailblazer/reform-rails]
 gem 'reform-rails', '~> 0.2.2'
-
-# A simple validation library [https://github.com/dry-rb/dry-validation]
-gem 'dry-validation', '~> 1.6'
 
 # Flexible authentication solution for Rails with Warden [https://github.com/heartcombo/devise]
 gem 'devise', '~> 4.8', '>= 4.8.1'

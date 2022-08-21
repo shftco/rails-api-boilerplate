@@ -1,17 +1,11 @@
 # frozen_string_literal: true
 
-require "dry/monads/do"
-
-class <%= service_class_name %>::Update
+class <%= service_class_name %>::Update < Base
   include Dry::Monads[:result]
   include Dry::Monads::Do.for(:call)
 
-  attr_reader :params, :record
-
-  def initialize(params:, record:)
-    @params = params
-    @record = record
-  end
+  option :record, type: Types.Constructor(Record)
+  option :params, type: Types::Hash
 
   def call
     ActiveRecord::Base.transaction(requires_new: true) do
