@@ -1,16 +1,10 @@
 # frozen_string_literal: true
 
-require "dry/monads/do"
-
-class <%= service_class_name %>::Destroy
+class <%= service_class_name %>::Destroy < Base
   include Dry::Monads[:result]
   include Dry::Monads::Do.for(:call)
 
-  attr_reader :record
-
-  def initialize(record:)
-    @record = record
-  end
+  option :record, type: Types.Constructor(Record)
 
   def call
     ActiveRecord::Base.transaction(requires_new: true) do
@@ -28,3 +22,4 @@ class <%= service_class_name %>::Destroy
     end
   end
 end
+

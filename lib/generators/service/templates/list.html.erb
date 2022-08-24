@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
-require "dry/monads/do"
-
-class <%= service_class_name %>::List
+class <%= service_class_name %>::List < Base
   include Dry::Monads[:result]
   include Dry::Monads::Do.for(:call)
 
-  def call(pagination: nil, query: nil)
+  option :pagination, type: Types.Constructor(ParameterObject::Pagination)
+  option :query, type: Types.Constructor(ParameterObject::Query)
+
+  def call
     Success(records.ransack(query.query).result.page(pagination.page).per(pagination.per_page))
   end
 end
