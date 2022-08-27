@@ -8,6 +8,17 @@
 
 ![cover](docs/cover.jpeg)
 
+# How to Works?
+```mermaid
+flowchart TD
+  R[Request] --> C[Application Controller]
+  C --> O[Application Operation]
+  O -- Validation successful? --> S[Application Service]
+  O -- Validation failed? --> E[Returns Contract Errors]
+  S -- Operation successful? --> RS[Returns Resource]
+  S -- Operation failed? --> OE[Returns Operation Errors]
+```
+
 # Documentations
 - [Swagger](docs/SWAGGER.md)
 - [Service generator](docs/SERVICE.md)
