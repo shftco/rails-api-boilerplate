@@ -59,6 +59,12 @@ group :development, :test do
 
   # Code style checking for Minitest files [https://github.com/rubocop/rubocop-minitest]
   gem 'rubocop-minitest', require: false
+
+  # Pry is a runtime developer console and IRB alternative with powerful introspection capabilities [https://github.com/pry/pry]
+  gem 'pry', '~> 0.14.1'
+
+  # Byebug is a Ruby debugger [https://github.com/deivid-rodriguez/byebug]
+  gem 'byebug', '~> 11.1', '>= 11.1.3'
 end
 
 group :development do
@@ -96,7 +102,7 @@ gem 'kaminari', '~> 1.2', '>= 1.2.2'
 gem 'dry-monads', '~> 1.4'
 
 # A simple validation library [https://github.com/dry-rb/dry-validation]
-gem 'dry-validation', '~> 1.6'
+gem 'dry-validation', '~> 1.8', '>= 1.8.1'
 
 # Typed structs and value objects [https://github.com/dry-rb/dry-struct]
 gem 'dry-struct', '~> 1.4'
@@ -106,12 +112,6 @@ gem 'dry-types', '~> 1.5', '>= 1.5.1'
 
 # DSL for declaring params and options of the initializer [https://github.com/dry-rb/dry-initializer]
 gem 'dry-initializer', '~> 3.1', '>= 3.1.1'
-
-# Form object decoupled from models with validation, population and presentation [https://github.com/trailblazer/reform]
-gem 'reform', '~> 2.6'
-
-# Automatically load and include all common Rails form features. [https://github.com/trailblazer/reform-rails]
-gem 'reform-rails', '~> 0.2.2'
 
 # Flexible authentication solution for Rails with Warden [https://github.com/heartcombo/devise]
 gem 'devise', '~> 4.8', '>= 4.8.1'

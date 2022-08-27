@@ -1,6 +1,7 @@
 ---
 tr:
   dry_validation:
+    keys_splitter: ' içindeki '
     errors:
       invalid?: geçersiz
       same_password?: parolalar eşleşmiyor
@@ -22,7 +23,7 @@ tr:
       false?: false olmalı
       filled?: doldurulmalı
       float?: ondalık sayı olmalı
-      format?: is in invalid format
+      format?: geçersiz formata sahip
       gt?: "%{num}'dan büyük olmalı"
       gteq?: "%{num}'dan büyük ya da eşit olmalı"
       hash?: must be a hash

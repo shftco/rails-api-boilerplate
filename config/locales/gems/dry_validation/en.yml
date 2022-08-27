@@ -1,5 +1,6 @@
 ---
 en:
   dry_validation:
+    keys_splitter: ' of '
     errors:
       invalid?: invalid

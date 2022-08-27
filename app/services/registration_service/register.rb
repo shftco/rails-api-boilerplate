@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class RegistrationService::Register < Base
+class RegistrationService::Register < ApplicationService
   include Dry::Monads[:result]
   include Dry::Monads::Do.for(:call)
 

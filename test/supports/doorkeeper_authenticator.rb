@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-module Helpers
-  module Authentication
+module Supports
+  module DoorkeeperAuthenticator
     def oauth_token_params(user, application, grant_type = Doorkeeper.config.grant_flows.first)
       {
         grant_type:,

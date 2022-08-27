@@ -20,7 +20,6 @@ class UserService::CreateTest < ActiveSupport::TestCase
     assert_no_difference 'User.count' do
       service = UserService::Create.new(params: @user_params).call
       assert service.failure?
-      assert_equal :error, service.failure[0]
     end
   end
 end

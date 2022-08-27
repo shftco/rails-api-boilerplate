@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class UserService::Create < Base
+class UserService::Create < ApplicationService
   include Dry::Monads[:result]
   include Dry::Monads::Do.for(:call)
 
@@ -12,7 +12,7 @@ class UserService::Create < Base
     if user.save
       Success(user)
     else
-      Failure([:error, user.errors])
+      resource_failure(user)
     end
   end
 end
