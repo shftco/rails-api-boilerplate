@@ -126,13 +126,7 @@ module Supports
     private
 
     def contract_error_messages(result, contract)
-      errors = {}
-
-      contract_errors_handler(result, contract)[:errors].each do |err|
-        k = err.keys.first
-        v = err.values.first
-        errors[k] = v
-      end
+      errors = contract_errors_parser(contract_errors_handler(result, contract))
 
       check_i18n_translations(contract, errors, :tr)
 

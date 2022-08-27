@@ -4,10 +4,12 @@ ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 require 'rails/test_help'
 require 'shoulda/matchers'
+require 'minitest/unit'
 require 'mocha/minitest'
 require 'minitest/focus'
 require 'supports/contract_validator'
 require 'supports/body_parser'
+require 'supports/contract_parser'
 require 'supports/doorkeeper_authenticator'
 require 'supports/sidekiq_minitest_support'
 require 'sidekiq/testing'
@@ -20,8 +22,9 @@ class ActiveSupport::TestCase
   # fixtures :all
 
   include FactoryBot::Syntax::Methods
-  include Supports::ContractValidator
   include Supports::BodyParser
+  include Supports::ContractParser
+  include Supports::ContractValidator
   include Supports::DoorkeeperAuthenticator
   include Supports::SidekiqMinitestSupport
 end

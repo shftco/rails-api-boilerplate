@@ -30,3 +30,5 @@
 
 # Ignore ds_store files.
 .DS_Store
+
+.byebug_history

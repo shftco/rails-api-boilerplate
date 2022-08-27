@@ -7,19 +7,19 @@ module Users
       include Dry::Monads::Do.for(:call)
 
       option :params
-      option :form, default: proc { Users::RegistrationContract.new }
+      option :contract, default: proc { Users::RegistrationContract.new }
 
       def call
-        form_params = yield validate(form)
-        user = yield register_user(form_params)
+        contract_params = yield validate(contract)
+        user = yield register_user(contract_params)
 
         Success(user)
       end
 
       private
 
-      def register_user(form_params)
-        UsersService::Registration::Register.new(params: form_params).call
+      def register_user(contract_params)
+        UsersService::Registration::Register.new(params: contract_params).call
       end
     end
   end

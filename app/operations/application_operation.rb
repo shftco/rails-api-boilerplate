@@ -8,21 +8,21 @@ class ApplicationOperation
 
   include ContractErrorParser
 
-  def validate(form)
-    result = form.call(params.as_json)
+  def validate(contract)
+    result = contract.call(params.as_json)
 
-    return form_success(result) if result.success?
+    return contract_success(result) if result.success?
 
-    form_failure(result, form)
+    contract_failure(result, contract)
   end
 
   private
 
-  def form_failure(result, form)
-    Failure(contract_errors_handler(result, form))
+  def contract_failure(result, contract)
+    Failure(contract_errors_handler(result, contract))
   end
 
-  def form_success(result)
+  def contract_success(result)
     Success(result.to_h)
   end
 end
