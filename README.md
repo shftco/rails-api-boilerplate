@@ -15,8 +15,8 @@ flowchart TD
   C --> O[Application Operation]
   O -- Validation successful? --> S[Application Service]
   O -- Validation failed? --> E[Returns Contract Errors]
-  S -- Operation successful? --> RS[Returns Resource]
-  S -- Operation failed? --> OE[Returns Operation Errors]
+  S -- Process successful? --> RS[Returns Resource]
+  S -- Process failed? --> OE[Returns Operation Errors]
 ```
 
 # Documentations
