@@ -8,7 +8,7 @@ module Users
 
       return render json: { message: I18n.t('devise.passwords.send_instructions') }, status: :ok if successfully_sent?(resource)
 
-      render json: { errors: resource.errors }, status: :unprocessable_entity
+      render json: { errors: resource.errors.full_messages }, status: :unprocessable_entity
     end
 
     def update
@@ -17,7 +17,7 @@ module Users
 
       return render json: { message: I18n.t('devise.passwords.updated_not_active') }, status: :ok if resource.errors.empty?
 
-      render json: { errors: resource.errors }, status: :unprocessable_entity
+      render json: { errors: resource.errors.full_messages }, status: :unprocessable_entity
     end
 
     private

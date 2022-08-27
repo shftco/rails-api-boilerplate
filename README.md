@@ -8,10 +8,21 @@
 
 ![cover](docs/cover.jpeg)
 
+# How to Works?
+```mermaid
+flowchart TD
+  R[Request] --> C[Application Controller]
+  C --> O[Application Operation]
+  O -- Validation successful? --> S[Application Service]
+  O -- Validation failed? --> E[Returns Contract Errors]
+  S -- Process successful? --> RS[Returns Resource]
+  S -- Process failed? --> OE[Returns Operation Errors]
+```
+
 # Documentations
 - [Swagger](docs/SWAGGER.md)
 - [Service generator](docs/SERVICE.md)
-- [Form generator](docs/FORM.md)
+- [Contract generator](docs/CONTRACT.md)
 - [Search & Filter & Sort](docs/RANSACK.md)
 
 # Installation

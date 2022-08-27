@@ -1,7 +1,0 @@
----
-tr:
-  forms:
-    user_form/registration:
-      attributes:
-        email: E-posta
-        password: Şifre

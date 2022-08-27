@@ -1,0 +1,9 @@
+Description:
+    Creates a contract classes
+
+Example:
+    bin/rails generate contract Customer::Create
+
+    This will create:
+        app/contracts/customers/create_contract.rb
+        app/test/contracts/customers/create_contract_test.rb

@@ -4,13 +4,15 @@ ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 require 'rails/test_help'
 require 'shoulda/matchers'
+require 'minitest/unit'
 require 'mocha/minitest'
 require 'minitest/focus'
-require 'helpers/form_validator'
-require 'helpers/body_parser'
-require 'helpers/authentication'
+require 'supports/contract_validator'
+require 'supports/body_parser'
+require 'supports/contract_parser'
+require 'supports/doorkeeper_authenticator'
+require 'supports/sidekiq_minitest_support'
 require 'sidekiq/testing'
-require 'helpers/sidekiq_minitest_support'
 
 class ActiveSupport::TestCase
   # Run tests in parallel with specified workers
@@ -20,10 +22,11 @@ class ActiveSupport::TestCase
   # fixtures :all
 
   include FactoryBot::Syntax::Methods
-  include Helpers::FormValidator
-  include Helpers::BodyParser
-  include Helpers::Authentication
-  include Helpers::SidekiqMinitestSupport
+  include Supports::BodyParser
+  include Supports::ContractParser
+  include Supports::ContractValidator
+  include Supports::DoorkeeperAuthenticator
+  include Supports::SidekiqMinitestSupport
 end
 
 Shoulda::Matchers.configure do |config|

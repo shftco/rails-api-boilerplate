@@ -1,0 +1,8 @@
+---
+tr:
+  contracts:
+    users:
+      registrationcontract:
+        params:
+          email: E-posta
+          password: Şifre
