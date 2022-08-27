@@ -11,7 +11,7 @@
 # Documentations
 - [Swagger](docs/SWAGGER.md)
 - [Service generator](docs/SERVICE.md)
-- [Form generator](docs/FORM.md)
+- [Contract generator](docs/CONTRACT.md)
 - [Search & Filter & Sort](docs/RANSACK.md)
 
 # Installation

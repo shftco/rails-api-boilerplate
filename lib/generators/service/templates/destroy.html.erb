@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class <%= service_class_name %>::Destroy < Base
+class <%= service_class_name %>::Destroy < ApplicationService
   include Dry::Monads[:result]
   include Dry::Monads::Do.for(:call)
 

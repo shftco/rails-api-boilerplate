@@ -19,7 +19,7 @@ module Users
       private
 
       def register_user(form_params)
-        RegistrationService::Register.new(params: form_params).call
+        UsersService::Registration::Register.new(params: form_params).call
       end
     end
   end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class <%= service_class_name %>::Update < Base
+class <%= service_class_name %>::Update < ApplicationService
   include Dry::Monads[:result]
   include Dry::Monads::Do.for(:call)
 

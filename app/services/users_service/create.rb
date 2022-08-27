@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class UserService::Create < ApplicationService
+class UsersService::Create < ApplicationService
   include Dry::Monads[:result]
   include Dry::Monads::Do.for(:call)
 

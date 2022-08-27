@@ -2,14 +2,14 @@
 
 require 'test_helper'
 
-class UserService::CreateTest < ActiveSupport::TestCase
+class UsersService::CreateTest < ActiveSupport::TestCase
   def setup
     @user_params = attributes_for(:user)
   end
 
   test 'should create user' do
     assert_difference 'User.count', 1 do
-      service = UserService::Create.new(params: @user_params).call
+      service = UsersService::Create.new(params: @user_params).call
       assert service.success?
     end
   end
@@ -18,7 +18,7 @@ class UserService::CreateTest < ActiveSupport::TestCase
     User.any_instance.expects(:save).returns(false)
 
     assert_no_difference 'User.count' do
-      service = UserService::Create.new(params: @user_params).call
+      service = UsersService::Create.new(params: @user_params).call
       assert service.failure?
     end
   end
