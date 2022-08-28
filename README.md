@@ -13,10 +13,16 @@
 flowchart TD
   R[Request] --> C[Application Controller]
   C --> O[Application Operation]
-  O -- Validation successful? --> S[Application Service]
-  O -- Validation failed? --> E[Returns Contract Errors]
-  S -- Process successful? --> RS[Returns Resource]
-  S -- Process failed? --> OE[Returns Resource Errors]
+  O -- Validate Params --> AC[Application Contract]
+  O -- Application Contract returned success?--> S[Application Service]
+  AC -- Validation success? --> O[Application Operation]
+  AC -- Validation failed? --> E[Contract Errors]
+  E --> RE
+  S -- Process successful? --> RS[Resource]
+  S -- Process failed? --> OE[Resource Errors]
+  OE --> RE[Response]
+  RS --> RE
+  RE -- Returns --> C
 ```
 
 # Documentations
