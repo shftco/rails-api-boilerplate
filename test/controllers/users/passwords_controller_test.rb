@@ -3,9 +3,17 @@
 require 'test_helper'
 
 class PasswordsControllerTest < ActionDispatch::IntegrationTest
-  test 'should send an email and returns a information message' do
-    user = create(:user)
-    params = { email: user.email }
+  attr_reader :doorkeeper_application, :user
+
+  def setup
+    @doorkeeper_application = create(:doorkeeper_application)
+    @user = create(:user)
+  end
+
+  test 'create#should send an email then returns an information message' do
+    params = { email: user.email,
+               client_id: doorkeeper_application.uid,
+               client_secret: doorkeeper_application.secret }
 
     assert_difference('Devise.mailer.deliveries.count') do
       post(user_password_url, params:, as: :json)
@@ -17,9 +25,38 @@ class PasswordsControllerTest < ActionDispatch::IntegrationTest
     assert_response :ok
   end
 
-  test 'should not send an email and returns errors with invalid email' do
-    builded_user = build(:user)
-    params = { email: builded_user.email }
+  test 'create#should return errors if oauth client id is invalid' do
+    params = { email: user.email,
+               client_id: 'invalid',
+               client_secret: doorkeeper_application.secret }
+
+    assert_no_difference('Devise.mailer.deliveries.count') do
+      post(user_password_url, params:, as: :json)
+    end
+
+    assert_equal 1, errors_count(response)
+    error_message?(response, I18n.t('doorkeeper.errors.messages.invalid_client'))
+    assert_response :unauthorized
+  end
+
+  test 'create#should return errors if oauth client secret is invalid' do
+    params = {  email: user.email,
+                client_id: doorkeeper_application.uid,
+                client_secret: 'invalid' }
+
+    assert_no_difference('Devise.mailer.deliveries.count') do
+      post(user_password_url, params:, as: :json)
+    end
+
+    assert_equal 1, errors_count(response)
+    error_message?(response, I18n.t('doorkeeper.errors.messages.invalid_client'))
+    assert_response :unauthorized
+  end
+
+  test 'create#should not send an email then returns errors if email was not found' do
+    params = { email: 'not@registered.com',
+               client_id: doorkeeper_application.uid,
+               client_secret: doorkeeper_application.secret }
 
     assert_no_difference('Devise.mailer.deliveries.count') do
       post(user_password_url, params:, as: :json)
@@ -30,10 +67,13 @@ class PasswordsControllerTest < ActionDispatch::IntegrationTest
     assert_response :unprocessable_entity
   end
 
-  test 'should update password with valid params' do
-    user = create(:user, updated_at: 1.day.ago)
+  test 'update#should update password' do
     token = user.send_reset_password_instructions
-    params = { reset_password_token: token, password: user.password, password_confirmation: user.password }
+    params = { reset_password_token: token,
+               password: user.password,
+               password_confirmation: user.password,
+               client_id: doorkeeper_application.uid,
+               client_secret: doorkeeper_application.secret }
 
     assert_changes -> { user.updated_at } do
       patch(user_password_url, params:, as: :json)
@@ -47,10 +87,47 @@ class PasswordsControllerTest < ActionDispatch::IntegrationTest
     assert_response :ok
   end
 
-  test 'should not update password with invalid token' do
-    user = create(:user)
+  test 'update#should return errors if oauth client id is invalid' do
+    token = user.send_reset_password_instructions
+    params = { reset_password_token: token,
+               password: user.password,
+               password_confirmation: user.password,
+               client_id: 'invalid',
+               client_secret: doorkeeper_application.secret }
+
+    assert_no_difference('Devise.mailer.deliveries.count') do
+      patch(user_password_url, params:, as: :json)
+    end
+
+    assert_equal 1, errors_count(response)
+    error_message?(response, I18n.t('doorkeeper.errors.messages.invalid_client'))
+    assert_response :unauthorized
+  end
+
+  test 'update#should return errors if oauth client secret is invalid' do
+    token = user.send_reset_password_instructions
+    params = { reset_password_token: token,
+               password: user.password,
+               password_confirmation: user.password,
+               client_id: doorkeeper_application.uid,
+               client_secret: 'invalid' }
+
+    assert_no_difference('Devise.mailer.deliveries.count') do
+      patch(user_password_url, params:, as: :json)
+    end
+
+    assert_equal 1, errors_count(response)
+    error_message?(response, I18n.t('doorkeeper.errors.messages.invalid_client'))
+    assert_response :unauthorized
+  end
+
+  test 'update#should not update password with invalid token' do
     user.send_reset_password_instructions
-    params = { reset_password_token: Faker::Lorem.characters(number: 10), password: user.password, password_confirmation: user.password }
+    params = { reset_password_token: 'so_secret_token',
+               password: user.password,
+               password_confirmation: user.password,
+               client_id: doorkeeper_application.uid,
+               client_secret: doorkeeper_application.secret }
 
     assert_no_changes -> { user.updated_at } do
       patch(user_password_url, params:, as: :json)

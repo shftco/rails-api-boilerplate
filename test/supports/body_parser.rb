@@ -13,5 +13,18 @@ module Supports
     def error_message?(response, message)
       load_body(response)[:errors].include?(message)
     end
+
+    def parse_meta(response)
+      body = load_body(response)
+
+      body[:meta]
+    end
+
+    def pagination_present?(response)
+      pagination = parse_meta(response)[:pagination]
+      expected_keys = %i[current previous next limit total_pages total_count]
+
+      expected_keys == pagination.keys
+    end
   end
 end

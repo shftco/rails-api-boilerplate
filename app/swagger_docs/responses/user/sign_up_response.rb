@@ -8,7 +8,7 @@ module Responses
       swagger_component do
         schema :UserSignUpSuccessResponse do
           key :type, :object
-          key :required, %i[id email access_token token_type expires_in created_at]
+          key :required, %i[id email access_token token_type expires_in refresh_token created_at]
 
           property :user do
             key :type, :object
@@ -45,44 +45,14 @@ module Responses
             key :example, 7200
           end
 
-          property :created_at do
+          property :refresh_token do
             key :type, :string
-            key :format, :date_time
-            key :example, '2020-01-01T00:00:00.000Z'
+            key :example, 'e7c8f8f0-e8e0-4b0f-b8b1-f8f8f8f8f8f8'
           end
-        end
 
-        schema :UserSignUpErrorResponse do
-          key :type, :object
-          key :required, %i[errors]
-
-          property :errors do
-            key :type, :object
-
-            property :email do
-              key :type, :array
-              items do
-                key :type, :string
-                key :example, 'has already been taken'
-              end
-            end
-          end
-        end
-
-        schema :UserSignUpInvalidClientResponse do
-          key :type, :object
-          key :required, %i[errors]
-
-          property :errors do
-            key :type, :object
-
-            property :client do
-              key :type, :array
-              items do
-                key :type, :string
-                key :example, 'Client authentication failed due to unknown client, no client authentication included, or unsupported authentication method.'
-              end
-            end
+          property :created_at do
+            key :type, :integer
+            key :example, 1_661_719_307
           end
         end
       end

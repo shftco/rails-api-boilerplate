@@ -1,15 +1,14 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
-  before_action :check_client, only: %i[create]
-
-  include DoorkeeperRegisterable
+  include Doorkeeper::Authorize
+  include Doorkeeper::Registerable
 
   def create
     operation = Users::Registrations::CreateOperation.new(params: registration_params).call
 
     if operation.success?
-      render json: render_user(operation.success, @client_app), status: :created
+      render json: render_user(operation.success, current_doorkeeper_application), status: :created
     else
       render json: operation.failure, status: :unprocessable_entity
     end
@@ -17,15 +16,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   private
 
-  def check_client
-    @client_app = Doorkeeper::Application.find_by(uid: registration_params[:client_id])
-
-    return if @client_app
-
-    render json: { errors: [I18n.t('doorkeeper.errors.messages.invalid_client')] }, status: :bad_request
-  end
-
   def registration_params
-    params.permit(:email, :password, :client_id)
+    params.permit(:email, :password)
   end
 end

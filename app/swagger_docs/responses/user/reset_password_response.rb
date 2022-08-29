@@ -15,23 +15,6 @@ module Responses
             key :example, 'You will receive an email with instructions on how to reset your password in a few minutes.'
           end
         end
-
-        schema :UserResetPasswordErrorResponse do
-          key :type, :object
-          key :required, %i[error]
-
-          property :errors do
-            key :type, :object
-
-            property :email do
-              key :type, :array
-              items do
-                key :type, :string
-                key :example, 'not found'
-              end
-            end
-          end
-        end
       end
     end
   end

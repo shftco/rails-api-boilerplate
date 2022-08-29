@@ -32,22 +32,7 @@ module Responses
 
           property :created_at do
             key :type, :integer
-            key :example, 157
-          end
-        end
-
-        schema :UserSignInErrorResponse do
-          key :type, :object
-          key :required, %i[error error_description]
-
-          property :error do
-            key :type, :string
-            key :example, 'invalid_grant'
-          end
-
-          property :error_description do
-            key :type, :string
-            key :example, 'Client authentication failed due to unknown client, no client authentication included, or unsupported authentication method.'
+            key :example, 1_661_719_659
           end
         end
       end

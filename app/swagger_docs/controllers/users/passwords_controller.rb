@@ -9,9 +9,9 @@ module Controllers
         operation :post do
           key :summary, 'Reset password'
           key :description, 'Send an email about resetting password'
-          key :operationId, 'userResetPassword'
+          key :operationId, 'sendResetPasswordInformation'
           key :tags, [
-            'user'
+            'User Passwords'
           ]
 
           request_body do
@@ -25,7 +25,7 @@ module Controllers
           end
 
           response 200 do
-            key :description, 'successfull response'
+            key :description, 'Successful response'
             content :'application/json' do
               schema do
                 key :'$ref', :UserResetPasswordSuccessResponse
@@ -34,27 +34,34 @@ module Controllers
           end
 
           response 422 do
-            key :description, 'error response'
+            key :description, 'Somethins goes wrong'
             content :'application/json' do
               schema do
-                key :'$ref', :UserResetPasswordErrorResponse
+                key :'$ref', :ErrorResponse
+              end
+            end
+          end
+
+          response 401 do
+            key :description, 'Invalid client credentials passed'
+            content :'application/json' do
+              schema do
+                key :'$ref', :ErrorResponse
               end
             end
           end
         end
-      end
 
-      swagger_path '/users/password' do
         operation :patch do
           key :summary, 'Update password'
           key :description, 'Update user password with token'
-          key :operationId, 'userUpdatePassword'
+          key :operationId, 'updateUserPassword'
           key :tags, [
-            'user'
+            'User Passwords'
           ]
 
           request_body do
-            key :description, 'User credentials'
+            key :description, 'Password credentials'
             key :required, true
             content :'application/json' do
               schema do
@@ -64,7 +71,7 @@ module Controllers
           end
 
           response 200 do
-            key :description, 'successfull response'
+            key :description, 'Successful response'
             content :'application/json' do
               schema do
                 key :'$ref', :UserUpdatePasswordSuccessResponse
@@ -73,10 +80,19 @@ module Controllers
           end
 
           response 422 do
-            key :description, 'error response'
+            key :description, 'Something goes wrong'
             content :'application/json' do
               schema do
-                key :'$ref', :UserUpdatePasswordErrorResponse
+                key :'$ref', :ErrorResponse
+              end
+            end
+          end
+
+          response 401 do
+            key :description, 'Invalid client credentials passed'
+            content :'application/json' do
+              schema do
+                key :'$ref', :ErrorResponse
               end
             end
           end

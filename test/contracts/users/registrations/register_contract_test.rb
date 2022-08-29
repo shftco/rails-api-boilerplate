@@ -2,8 +2,8 @@
 
 require 'test_helper'
 
-class Users::RegistrationContractTest < ActiveSupport::TestCase
-  CONTRACT = Users::RegistrationContract.new
+class Users::Registrations::RegisterContractTest < ActiveSupport::TestCase
+  CONTRACT = Users::Registrations::RegisterContract.new
 
   def validate(payload: {})
     CONTRACT.call(payload)
