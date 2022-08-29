@@ -60,6 +60,8 @@ class SwaggerDocs
         }
       }
 
+      swagger_data[:security] = [{ bearerAuth: [] }]
+
       swagger_data
     end
   end
