@@ -1,22 +1,24 @@
 # frozen_string_literal: true
 
-class Users::RegistrationsController < ApplicationController
-  include Doorkeeper::Authorize
+module Users
+  class RegistrationsController < ApplicationController
+    include Doorkeeper::Authorize
 
-  def create
-    operation = Users::Registrations::CreateOperation.new(params: registration_params,
-                                                          doorkeeper_application: current_doorkeeper_application).call
+    def create
+      operation = Users::Registrations::CreateOperation.new(params: registration_params,
+                                                            doorkeeper_application: current_doorkeeper_application).call
 
-    if operation.success?
-      render json: operation.success, status: :created
-    else
-      render json: operation.failure, status: :unprocessable_entity
+      if operation.success?
+        render json: operation.success, status: :created
+      else
+        render json: operation.failure, status: :unprocessable_entity
+      end
     end
-  end
 
-  private
+    private
 
-  def registration_params
-    params.permit(:email, :password)
+    def registration_params
+      params.permit(:email, :password)
+    end
   end
 end

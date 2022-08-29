@@ -2,101 +2,103 @@
 
 require 'test_helper'
 
-class User::TokensControllerTest < ActionDispatch::IntegrationTest
-  attr_reader :user, :application, :token
+module Users
+  class TokensControllerTest < ActionDispatch::IntegrationTest
+    attr_reader :user, :application, :token
 
-  def setup
-    @user = create(:user)
-    @application = create(:doorkeeper_application)
-    @token = create(:doorkeeper_access_token, application: @application, resource_owner: @user)
-  end
-
-  test 'should generate new access and refresh tokens' do
-    assert_difference('Doorkeeper::AccessToken.count') do
-      post(oauth_token_url,
-           params: oauth_token_params(user, application),
-           as: :json)
+    def setup
+      @user = create(:user)
+      @application = create(:doorkeeper_application)
+      @token = create(:doorkeeper_access_token, application: @application, resource_owner: @user)
     end
 
-    body = load_body(response)
+    test 'should generate new access and refresh tokens' do
+      assert_difference('Doorkeeper::AccessToken.count') do
+        post(oauth_token_url,
+             params: oauth_token_params(user, application),
+             as: :json)
+      end
 
-    assert body.key?(:access_token)
-    assert body.key?(:refresh_token)
-    assert body.key?(:token_type)
-    assert body.key?(:expires_in)
-    assert body.key?(:created_at)
-    assert_response :success
-  end
+      body = load_body(response)
 
-  test 'should not generate new access and refresh tokens if user credentials is invalid' do
-    invalid_user = build(:user)
-
-    assert_no_difference('Doorkeeper::AccessToken.count') do
-      post(oauth_token_url,
-           params: oauth_token_params(invalid_user, application),
-           as: :json)
+      assert body.key?(:access_token)
+      assert body.key?(:refresh_token)
+      assert body.key?(:token_type)
+      assert body.key?(:expires_in)
+      assert body.key?(:created_at)
+      assert_response :success
     end
 
-    body = load_body(response)
+    test 'should not generate new access and refresh tokens if user credentials is invalid' do
+      invalid_user = build(:user)
 
-    assert body.key?(:error)
-    assert_equal 'invalid_grant', body[:error]
-    assert_response :bad_request
-  end
+      assert_no_difference('Doorkeeper::AccessToken.count') do
+        post(oauth_token_url,
+             params: oauth_token_params(invalid_user, application),
+             as: :json)
+      end
 
-  test 'should revoke access token' do
-    assert_changes -> { token.revoked_at } do
-      post(oauth_revoke_url,
-           params: oauth_revoke_params(token),
-           as: :json)
+      body = load_body(response)
 
-      token.reload
+      assert body.key?(:error)
+      assert_equal 'invalid_grant', body[:error]
+      assert_response :bad_request
     end
 
-    assert_response :success
-  end
+    test 'should revoke access token' do
+      assert_changes -> { token.revoked_at } do
+        post(oauth_revoke_url,
+             params: oauth_revoke_params(token),
+             as: :json)
 
-  test 'should not revoke access token if token has already revoked' do
-    token.revoke
+        token.reload
+      end
 
-    assert_no_changes -> { token.revoked_at } do
-      post(oauth_revoke_url,
-           params: oauth_revoke_params(token),
-           as: :json)
-
-      token.reload
+      assert_response :success
     end
 
-    assert_response :success
-  end
+    test 'should not revoke access token if token has already revoked' do
+      token.revoke
 
-  test 'should generate new access and refresh tokens with refresh token' do
-    assert_difference('Doorkeeper::AccessToken.count') do
-      post(oauth_token_url,
-           params: oauth_refresh_token_params(token),
-           as: :json)
+      assert_no_changes -> { token.revoked_at } do
+        post(oauth_revoke_url,
+             params: oauth_revoke_params(token),
+             as: :json)
+
+        token.reload
+      end
+
+      assert_response :success
     end
 
-    body = load_body(response)
+    test 'should generate new access and refresh tokens with refresh token' do
+      assert_difference('Doorkeeper::AccessToken.count') do
+        post(oauth_token_url,
+             params: oauth_refresh_token_params(token),
+             as: :json)
+      end
 
-    assert body.key?(:access_token)
-    assert body.key?(:refresh_token)
-    assert body.key?(:token_type)
-    assert body.key?(:expires_in)
-    assert body.key?(:created_at)
-    assert_response :success
-  end
+      body = load_body(response)
 
-  test 'should not generate new access and refresh tokens if refresh token is invalid' do
-    assert_no_difference('Doorkeeper::AccessToken.count') do
-      post(oauth_token_url,
-           params: oauth_refresh_token_params(token, 'token'))
+      assert body.key?(:access_token)
+      assert body.key?(:refresh_token)
+      assert body.key?(:token_type)
+      assert body.key?(:expires_in)
+      assert body.key?(:created_at)
+      assert_response :success
     end
 
-    body = load_body(response)
+    test 'should not generate new access and refresh tokens if refresh token is invalid' do
+      assert_no_difference('Doorkeeper::AccessToken.count') do
+        post(oauth_token_url,
+             params: oauth_refresh_token_params(token, 'token'))
+      end
 
-    assert body.key?(:error)
-    assert_equal 'invalid_grant', body[:error]
-    assert_response :bad_request
+      body = load_body(response)
+
+      assert body.key?(:error)
+      assert_equal 'invalid_grant', body[:error]
+      assert_response :bad_request
+    end
   end
 end

@@ -33,12 +33,6 @@ Metrics/ClassLength:
 Style/Documentation:
   Enabled: false
 
-Style/ClassAndModuleChildren:
-  Enabled: false
-
-Style/Lambda:
-  Enabled: false
-
 Style/HashEachMethods:
   Enabled: true
 
