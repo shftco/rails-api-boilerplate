@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
-class Users::RegistrationsController < Devise::RegistrationsController
+class Users::RegistrationsController < ApplicationController
   include Doorkeeper::Authorize
-  include Doorkeeper::Registerable
 
   def create
-    operation = Users::Registrations::CreateOperation.new(params: registration_params).call
+    operation = Users::Registrations::CreateOperation.new(params: registration_params,
+                                                          doorkeeper_application: current_doorkeeper_application).call
 
     if operation.success?
-      render json: render_user(operation.success, current_doorkeeper_application), status: :created
+      render json: operation.success, status: :created
     else
       render json: operation.failure, status: :unprocessable_entity
     end

@@ -7,6 +7,7 @@ module Users
       include Dry::Monads::Do.for(:call)
 
       option :params
+      option :doorkeeper_application, type: Types.Instance(Doorkeeper::Application)
       option :contract, default: proc { Users::Registrations::RegisterContract.new }
 
       def call
@@ -19,7 +20,7 @@ module Users
       private
 
       def register_user(contract_params)
-        UsersService::Registrations::Register.new(params: contract_params).call
+        UsersService::Registrations::Register.new(params: contract_params, doorkeeper_application:).call
       end
     end
   end

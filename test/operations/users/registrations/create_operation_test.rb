@@ -3,6 +3,12 @@
 require 'test_helper'
 
 class Users::Registrations::CreateOperationTest < ActiveSupport::TestCase
+  attr_reader :doorkeeper_application
+
+  def setup
+    @doorkeeper_application = create(:doorkeeper_application)
+  end
+
   test 'should pass contract validation then calling the service' do
     params_mock = mock
     params_mock.expects(:as_json).returns(params_mock)
@@ -17,7 +23,7 @@ class Users::Registrations::CreateOperationTest < ActiveSupport::TestCase
     UsersService::Registrations::Register.expects(:new).returns(service_mock)
     service_mock.expects(:call).returns(Dry::Monads::Result::Success.new(true))
 
-    operation = Users::Registrations::CreateOperation.new(params: params_mock).call
+    operation = Users::Registrations::CreateOperation.new(params: params_mock, doorkeeper_application:).call
 
     assert operation.success?
   end
@@ -26,7 +32,7 @@ class Users::Registrations::CreateOperationTest < ActiveSupport::TestCase
     service_mock = mock
     UsersService::Registrations::Register.expects(:new).returns(service_mock).never
 
-    operation = Users::Registrations::CreateOperation.new(params: {}).call
+    operation = Users::Registrations::CreateOperation.new(params: {}, doorkeeper_application:).call
 
     errors = contract_errors_parser(operation.failure)
 
@@ -49,7 +55,7 @@ class Users::Registrations::CreateOperationTest < ActiveSupport::TestCase
     UsersService::Registrations::Register.expects(:new).returns(service_mock)
     service_mock.expects(:call).returns(Dry::Monads::Result::Failure.new(:failed_because_of_me))
 
-    operation = Users::Registrations::CreateOperation.new(params: params_mock).call
+    operation = Users::Registrations::CreateOperation.new(params: params_mock, doorkeeper_application:).call
 
     assert operation.failure?
     assert_equal :failed_because_of_me, operation.failure
