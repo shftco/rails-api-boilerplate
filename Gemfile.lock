@@ -9,7 +9,7 @@ GIT
 
 GIT
   remote: https://github.com/faker-ruby/faker.git
-  revision: 9093f59f212fe9d72287cdee7eb03f121347c516
+  revision: 4b17b5c2e576c47ac6f7821b81f4c5529fc03a13
   branch: master
   specs:
     faker (2.22.0)
@@ -275,7 +275,7 @@ GEM
       unicode-display_width (>= 1.4.0, < 3.0)
     rubocop-ast (1.21.0)
       parser (>= 3.1.1.0)
-    rubocop-minitest (0.21.0)
+    rubocop-minitest (0.21.1)
       rubocop (>= 0.90, < 2.0)
     rubocop-performance (1.14.3)
       rubocop (>= 1.7.0, < 2.0)
@@ -291,10 +291,10 @@ GEM
     shoulda-context (2.0.0)
     shoulda-matchers (4.5.1)
       activesupport (>= 4.2.0)
-    sidekiq (6.5.5)
-      connection_pool (>= 2.2.2)
+    sidekiq (6.5.6)
+      connection_pool (>= 2.2.5)
       rack (~> 2.0)
-      redis (>= 4.5.0)
+      redis (>= 4.5.0, < 5)
     strscan (3.0.4)
     swagger-blocks (3.0.0)
     thor (1.2.1)
@@ -335,7 +335,7 @@ DEPENDENCIES
   pry (~> 0.14.1)
   puma (~> 5.0)
   rack-cors
-  rails (~> 7.0.2)
+  rails (~> 7.0, >= 7.0.3.1)
   ransack!
   rubocop
   rubocop-minitest
