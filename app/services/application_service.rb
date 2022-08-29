@@ -6,6 +6,8 @@ require 'dry-initializer'
 class ApplicationService
   extend Dry::Initializer
 
+  include SidekiqHelper
+
   def resource_failure(resource)
     custom_resource_failure(resource.errors.full_messages)
   end

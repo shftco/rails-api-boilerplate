@@ -2,7 +2,17 @@
 tr:
   contracts:
     users:
-      registrationcontract:
-        params:
-          email: E-posta
-          password: Şifre
+      registrations:
+        registercontract:
+          params:
+            email: E-posta
+            password: Şifre
+      passwords:
+        updatecontract:
+          params:
+            password: Şifre
+            password_confirmation: Şifre onayı
+            reset_password_token: Şifre sıfırlama jetonu
+        sendinstructionscontract:
+          params:
+            email: E-posta

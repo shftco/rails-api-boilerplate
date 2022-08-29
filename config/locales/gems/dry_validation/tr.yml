@@ -4,7 +4,7 @@ tr:
     keys_splitter: ' içindeki '
     errors:
       invalid?: geçersiz
-      same_password?: parolalar eşleşmiyor
+      same_password?: eşleşmiyor
       array?: dizi olmalı
       attr?: eksik
       bool?: true veya false olmalı

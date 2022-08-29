@@ -1,23 +1,27 @@
 # frozen_string_literal: true
 
 module Users
-  class PasswordsController < Devise::PasswordsController
+  class PasswordsController < ApplicationController
+    include Doorkeeper::Authorize
+
     def create
-      self.resource = resource_class.send_reset_password_instructions(password_params)
-      yield resource if block_given?
+      operation = Users::Passwords::CreateOperation.new(params: password_params).call
 
-      return render json: { message: I18n.t('devise.passwords.send_instructions') }, status: :ok if successfully_sent?(resource)
-
-      render json: { errors: resource.errors.full_messages }, status: :unprocessable_entity
+      if operation.success?
+        render json: operation.success, status: :ok
+      else
+        render json: operation.failure, status: :unprocessable_entity
+      end
     end
 
     def update
-      self.resource = resource_class.reset_password_by_token(password_params)
-      yield resource if block_given?
+      operation = Users::Passwords::UpdateOperation.new(params: password_params).call
 
-      return render json: { message: I18n.t('devise.passwords.updated_not_active') }, status: :ok if resource.errors.empty?
-
-      render json: { errors: resource.errors.full_messages }, status: :unprocessable_entity
+      if operation.success?
+        render json: operation.success, status: :ok
+      else
+        render json: operation.failure, status: :unprocessable_entity
+      end
     end
 
     private

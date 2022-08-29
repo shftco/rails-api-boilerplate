@@ -123,6 +123,16 @@ module Supports
       assert_includes contract_error_messages(result, contract)[key], 'is missing'
     end
 
+    def same_password?(result, key, contract)
+      assert_includes contract_error_messages(result, contract).keys, key
+      assert_includes contract_error_messages(result, contract)[key], 'does not match'
+    end
+
+    def uuid_v4?(result, key, contract)
+      assert_includes contract_error_messages(result, contract).keys, key
+      assert_includes contract_error_messages(result, contract)[key], 'is not a valid UUID'
+    end
+
     private
 
     def contract_error_messages(result, contract)

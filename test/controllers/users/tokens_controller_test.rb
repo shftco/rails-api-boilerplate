@@ -3,6 +3,8 @@
 require 'test_helper'
 
 class User::TokensControllerTest < ActionDispatch::IntegrationTest
+  attr_reader :user, :application, :token
+
   def setup
     @user = create(:user)
     @application = create(:doorkeeper_application)
@@ -12,7 +14,7 @@ class User::TokensControllerTest < ActionDispatch::IntegrationTest
   test 'should generate new access and refresh tokens' do
     assert_difference('Doorkeeper::AccessToken.count') do
       post(oauth_token_url,
-           params: oauth_token_params(@user, @application),
+           params: oauth_token_params(user, application),
            as: :json)
     end
 
@@ -26,12 +28,12 @@ class User::TokensControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test 'should not generate new access and refresh tokens with invalid user' do
-    user = build(:user)
+  test 'should not generate new access and refresh tokens if user credentials is invalid' do
+    invalid_user = build(:user)
 
     assert_no_difference('Doorkeeper::AccessToken.count') do
       post(oauth_token_url,
-           params: oauth_token_params(user, @application),
+           params: oauth_token_params(invalid_user, application),
            as: :json)
     end
 
@@ -43,35 +45,35 @@ class User::TokensControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should revoke access token' do
-    assert_changes -> { @token.revoked_at } do
+    assert_changes -> { token.revoked_at } do
       post(oauth_revoke_url,
-           params: oauth_revoke_params(@token),
+           params: oauth_revoke_params(token),
            as: :json)
 
-      @token.reload
+      token.reload
     end
 
     assert_response :success
   end
 
-  test 'should not revoke access token with invalid token' do
-    @token.revoke
+  test 'should not revoke access token if token has already revoked' do
+    token.revoke
 
-    assert_no_changes -> { @token.revoked_at } do
+    assert_no_changes -> { token.revoked_at } do
       post(oauth_revoke_url,
-           params: oauth_revoke_params(@token),
+           params: oauth_revoke_params(token),
            as: :json)
 
-      @token.reload
+      token.reload
     end
 
     assert_response :success
   end
 
-  test 'should generate new access and refresh tokens with valid refresh token' do
+  test 'should generate new access and refresh tokens with refresh token' do
     assert_difference('Doorkeeper::AccessToken.count') do
       post(oauth_token_url,
-           params: oauth_refresh_token_params(@token),
+           params: oauth_refresh_token_params(token),
            as: :json)
     end
 
@@ -85,10 +87,10 @@ class User::TokensControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test 'should not generate new access and refresh tokens with invalid refresh token' do
+  test 'should not generate new access and refresh tokens if refresh token is invalid' do
     assert_no_difference('Doorkeeper::AccessToken.count') do
       post(oauth_token_url,
-           params: oauth_refresh_token_params(@token, 'token'))
+           params: oauth_refresh_token_params(token, 'token'))
     end
 
     body = load_body(response)

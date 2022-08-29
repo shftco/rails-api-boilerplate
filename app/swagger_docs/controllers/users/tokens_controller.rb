@@ -11,7 +11,7 @@ module Controllers
           key :description, 'Generate acess and refresh tokens for authentication'
           key :operationId, 'userSignIn'
           key :tags, [
-            'user'
+            'User Sessions'
           ]
 
           request_body do
@@ -25,7 +25,7 @@ module Controllers
           end
 
           response 200 do
-            key :description, 'successfull response'
+            key :description, 'Successful response'
             content :'application/json' do
               schema do
                 key :'$ref', :UserSignInSuccessResponse
@@ -33,11 +33,20 @@ module Controllers
             end
           end
 
-          response 401 do
-            key :description, 'error response'
+          response 400 do
+            key :description, 'Invalid authentication credentials passed'
             content :'application/json' do
               schema do
-                key :'$ref', :UserSignInErrorResponse
+                key :'$ref', :DoorkeeperInvalidResponse
+              end
+            end
+          end
+
+          response 401 do
+            key :description, 'Invalid client credentials passed'
+            content :'application/json' do
+              schema do
+                key :'$ref', :DoorkeeperInvalidResponse
               end
             end
           end

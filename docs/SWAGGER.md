@@ -39,7 +39,7 @@ module Controllers
         end
 
         response 200 do
-          key :description, 'Successfull response'
+          key :description, 'Successful response'
           content :'application/json' do
             schema do
               key :'$ref', :CityShowResponse

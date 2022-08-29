@@ -11,7 +11,7 @@ module Controllers
           key :description, 'Create a new user and generate acess and refresh tokens'
           key :operationId, 'userSignUp'
           key :tags, [
-            'user'
+            'User Registrations'
           ]
 
           request_body do
@@ -25,7 +25,7 @@ module Controllers
           end
 
           response 201 do
-            key :description, 'successfull response'
+            key :description, 'Successful response'
             content :'application/json' do
               schema do
                 key :'$ref', :UserSignUpSuccessResponse
@@ -34,19 +34,19 @@ module Controllers
           end
 
           response 422 do
-            key :description, 'error response'
+            key :description, 'Something goes wrong'
             content :'application/json' do
               schema do
-                key :'$ref', :UserSignUpErrorResponse
+                key :'$ref', :ErrorResponse
               end
             end
           end
 
-          response 400 do
-            key :description, 'invalid client response'
+          response 401 do
+            key :description, 'Invalid client credentials passed'
             content :'application/json' do
               schema do
-                key :'$ref', :UserSignUpInvalidClientResponse
+                key :'$ref', :ErrorResponse
               end
             end
           end
