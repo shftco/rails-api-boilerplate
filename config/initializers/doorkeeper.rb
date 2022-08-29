@@ -489,3 +489,5 @@ Doorkeeper.configure do
   #
   # realm "Doorkeeper"
 end
+
+Doorkeeper::OAuth::TokenResponse.prepend Doorkeeper::CustomTokenResponse

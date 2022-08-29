@@ -20,12 +20,16 @@ module Users
       end
 
       body = load_body(response)
+      user_body = body[:user]
 
       assert body.key?(:access_token)
       assert body.key?(:refresh_token)
       assert body.key?(:token_type)
       assert body.key?(:expires_in)
       assert body.key?(:created_at)
+      assert user_body[:email].present?
+      assert user_body[:type].present?
+      assert user_body[:id].present?
       assert_response :success
     end
 

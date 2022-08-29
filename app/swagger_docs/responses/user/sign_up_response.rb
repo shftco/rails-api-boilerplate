@@ -8,10 +8,11 @@ module Responses
       swagger_component do
         schema :UserSignUpSuccessResponse do
           key :type, :object
-          key :required, %i[id email access_token token_type expires_in refresh_token created_at]
+          key :required, %i[user access_token token_type expires_in refresh_token created_at]
 
           property :user do
             key :type, :object
+            key :required, %i[id type email]
 
             property :id do
               key :type, :string
