@@ -12,7 +12,7 @@ module Users
       @token = create(:doorkeeper_access_token, application: @application, resource_owner: @user)
     end
 
-    test 'should generate new access and refresh tokens' do
+    test 'create#should generate new access and refresh tokens' do
       assert_difference('Doorkeeper::AccessToken.count') do
         post(oauth_token_url,
              params: oauth_token_params(user, application),
@@ -33,7 +33,39 @@ module Users
       assert_response :success
     end
 
-    test 'should not generate new access and refresh tokens if user credentials is invalid' do
+    test 'create#should fail client id is invalid' do
+      params = { grant_type: 'password',
+                 email: user.email,
+                 password: user.password,
+                 client_id: 'invalid',
+                 client_secret: application.secret }
+
+      assert_no_difference('Doorkeeper::AccessToken.count') do
+        post(oauth_token_url, params:, as: :json)
+      end
+
+      assert error_message?(response, I18n.t('doorkeeper.errors.messages.invalid_client'))
+      assert_equal 1, errors_count(response)
+      assert_response :unauthorized
+    end
+
+    test 'create#should fail client secret is invalid' do
+      params = { grant_type: 'password',
+                 email: user.email,
+                 password: user.password,
+                 client_id: application.uid,
+                 client_secret: 'invalid' }
+
+      assert_no_difference('Doorkeeper::AccessToken.count') do
+        post(oauth_token_url, params:, as: :json)
+      end
+
+      assert error_message?(response, I18n.t('doorkeeper.errors.messages.invalid_client'))
+      assert_equal 1, errors_count(response)
+      assert_response :unauthorized
+    end
+
+    test 'create#should not generate new access and refresh tokens if user credentials is invalid' do
       invalid_user = build(:user)
 
       assert_no_difference('Doorkeeper::AccessToken.count') do
@@ -42,40 +74,12 @@ module Users
              as: :json)
       end
 
-      body = load_body(response)
-
-      assert body.key?(:error)
-      assert_equal 'invalid_grant', body[:error]
+      assert error_message?(response, I18n.t('devise.failure.invalid', authentication_keys: User.authentication_keys.join('/')))
+      assert_equal 1, errors_count(response)
       assert_response :bad_request
     end
 
-    test 'should revoke access token' do
-      assert_changes -> { token.revoked_at } do
-        post(oauth_revoke_url,
-             params: oauth_revoke_params(token),
-             as: :json)
-
-        token.reload
-      end
-
-      assert_response :success
-    end
-
-    test 'should not revoke access token if token has already revoked' do
-      token.revoke
-
-      assert_no_changes -> { token.revoked_at } do
-        post(oauth_revoke_url,
-             params: oauth_revoke_params(token),
-             as: :json)
-
-        token.reload
-      end
-
-      assert_response :success
-    end
-
-    test 'should generate new access and refresh tokens with refresh token' do
+    test 'create#should generate new access and refresh tokens with refresh token' do
       assert_difference('Doorkeeper::AccessToken.count') do
         post(oauth_token_url,
              params: oauth_refresh_token_params(token),
@@ -92,17 +96,39 @@ module Users
       assert_response :success
     end
 
-    test 'should not generate new access and refresh tokens if refresh token is invalid' do
+    test 'create#should not generate new access and refresh tokens if refresh token is invalid' do
       assert_no_difference('Doorkeeper::AccessToken.count') do
         post(oauth_token_url,
              params: oauth_refresh_token_params(token, 'token'))
       end
 
-      body = load_body(response)
-
-      assert body.key?(:error)
-      assert_equal 'invalid_grant', body[:error]
+      assert error_message?(response, I18n.t('devise.failure.invalid', authentication_keys: User.authentication_keys.join('/')))
+      assert_equal 1, errors_count(response)
       assert_response :bad_request
+    end
+
+    test 'revoke#should revoke access token' do
+      assert_changes -> { token.revoked_at } do
+        post(oauth_revoke_url,
+             params: oauth_revoke_params(token),
+             as: :json)
+
+        token.reload
+      end
+
+      assert_response :success
+    end
+
+    test 'revoke#should not revoke access token if token has already revoked' do
+      token.revoke
+
+      assert_no_changes -> { token.revoked_at } do
+        post(oauth_revoke_url, params: oauth_revoke_params(token), as: :json)
+
+        token.reload
+      end
+
+      assert_response :success
     end
   end
 end

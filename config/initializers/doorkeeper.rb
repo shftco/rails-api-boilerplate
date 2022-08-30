@@ -491,3 +491,4 @@ Doorkeeper.configure do
 end
 
 Doorkeeper::OAuth::TokenResponse.prepend Doorkeeper::CustomTokenResponse
+Doorkeeper::OAuth::ErrorResponse.prepend Doorkeeper::CustomErrorResponse

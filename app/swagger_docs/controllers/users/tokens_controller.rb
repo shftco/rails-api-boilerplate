@@ -37,7 +37,7 @@ module Controllers
             key :description, 'Invalid authentication credentials passed'
             content :'application/json' do
               schema do
-                key :'$ref', :DoorkeeperInvalidResponse
+                key :'$ref', :ErrorResponse
               end
             end
           end
@@ -46,7 +46,7 @@ module Controllers
             key :description, 'Invalid client credentials passed'
             content :'application/json' do
               schema do
-                key :'$ref', :DoorkeeperInvalidResponse
+                key :'$ref', :ErrorResponse
               end
             end
           end

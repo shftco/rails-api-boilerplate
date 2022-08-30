@@ -22,7 +22,6 @@ class SwaggerDocs
     Responses::User::ResetPasswordResponse,
     Responses::User::UpdatePasswordResponse,
     Responses::ErrorResponse,
-    Responses::Doorkeeper::InvalidResponse,
     self
   ].freeze
 
