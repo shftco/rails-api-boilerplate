@@ -8,7 +8,7 @@ module Controllers
       swagger_path '/users/sign_up' do
         operation :post do
           key :summary, 'Sign up'
-          key :description, 'Create a new user and generate acess and refresh tokens'
+          key :description, 'Create a new user and generate access and refresh tokens'
           key :operationId, 'userSignUp'
           key :tags, [
             'User Registrations'

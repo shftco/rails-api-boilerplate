@@ -16,6 +16,7 @@ class SwaggerDocs
     Inputs::User::SignUpInput,
     Inputs::User::ResetPasswordInput,
     Inputs::User::UpdatePasswordInput,
+    Inputs::User::RevokeInput,
     ## Responses ##
     Responses::User::SignInResponse,
     Responses::User::SignUpResponse,

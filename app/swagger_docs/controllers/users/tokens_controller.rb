@@ -7,8 +7,8 @@ module Controllers
 
       swagger_path '/users/oauth/token' do
         operation :post do
-          key :summary, 'Login '
-          key :description, 'Generate acess and refresh tokens for authentication'
+          key :summary, 'Generate access and refresh tokens for authentication'
+          key :description, 'Generate access and refresh tokens for authentication'
           key :operationId, 'userSignIn'
           key :tags, [
             'User Sessions'
@@ -47,6 +47,53 @@ module Controllers
             content :'application/json' do
               schema do
                 key :'$ref', :ErrorResponse
+              end
+            end
+          end
+        end
+      end
+
+      swagger_path '/users/oauth/revoke' do
+        operation :post do
+          key :summary, 'Revoke access or refresh tokens'
+          key :description, 'Revoke access or refresh token'
+          key :operationId, 'userLogout'
+          key :tags, [
+            'User Sessions'
+          ]
+
+          request_body do
+            key :description, 'Token credentials'
+            key :required, true
+            content :'application/json' do
+              schema do
+                key :'$ref', :UserRevokeInput
+              end
+            end
+          end
+
+          response 200 do
+            key :description, 'Default response'
+            content :'application/json' do
+              schema do
+                key :type, :object
+              end
+            end
+          end
+
+          response 403 do
+            key :description, 'Invalid client credentials passed'
+            content :'application/json' do
+              schema do
+                key :type, :object
+
+                property :error do
+                  key :type, :string
+                end
+
+                property :error_description do
+                  key :type, :string
+                end
               end
             end
           end
