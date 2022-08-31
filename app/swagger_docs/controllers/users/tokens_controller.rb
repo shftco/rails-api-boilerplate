@@ -85,15 +85,7 @@ module Controllers
             key :description, 'Invalid client credentials passed'
             content :'application/json' do
               schema do
-                key :type, :object
-
-                property :error do
-                  key :type, :string
-                end
-
-                property :error_description do
-                  key :type, :string
-                end
+                key :'$ref', :ErrorResponse
               end
             end
           end
