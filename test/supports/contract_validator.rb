@@ -138,17 +138,25 @@ module Supports
     def contract_error_messages(result, contract)
       errors = contract_errors_parser(contract_errors_handler(result, contract))
 
-      check_i18n_translations(contract, errors, :tr)
+      check_i18n_translations(contract, errors)
 
       errors
     end
 
-    def check_i18n_translations(contract, errors, locale)
+    def check_i18n_translations_for(contract, errors, locale)
       params = errors.keys.map { |k| k.to_s.split(ContractErrorParser::TEST_KEYS_SPLITTER) }.flatten
 
       params.each do |param|
         translation = I18n.t("contracts.#{format_contract_name(contract)}.params.#{param}", locale:)
         ap translation if translation.include?('translation missing')
+      end
+    end
+
+    def check_i18n_translations(contract, errors)
+      I18n.available_locales.each do |locale|
+        next if locale == :en
+
+        check_i18n_translations_for(contract, errors, locale)
       end
     end
   end
