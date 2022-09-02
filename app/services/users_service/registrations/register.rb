@@ -3,9 +3,6 @@
 module UsersService
   module Registrations
     class Register < ApplicationService
-      include Dry::Monads[:result]
-      include Dry::Monads::Do.for(:call)
-
       include DoorkeeperHelper
 
       option :params, type: Types::Hash

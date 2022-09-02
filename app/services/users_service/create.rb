@@ -2,9 +2,6 @@
 
 module UsersService
   class Create < ApplicationService
-    include Dry::Monads[:result]
-    include Dry::Monads::Do.for(:call)
-
     option :params, type: Types::Hash
 
     def call

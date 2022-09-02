@@ -6,6 +6,8 @@ require 'dry-initializer'
 class ApplicationService
   extend Dry::Initializer
 
+  include Dry::Monads
+  include Dry::Monads::Do
   include SidekiqHelper
 
   def resource_failure(resource)

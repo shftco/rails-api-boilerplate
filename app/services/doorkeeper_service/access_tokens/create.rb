@@ -3,9 +3,6 @@
 module DoorkeeperService
   module AccessTokens
     class Create < ApplicationService
-      include Dry::Monads[:result]
-      include Dry::Monads::Do.for(:call)
-
       option :doorkeeper_application, type: Types.Instance(Doorkeeper::Application)
       option :user, type: Types.Instance(User)
 
