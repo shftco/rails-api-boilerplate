@@ -6,7 +6,7 @@ require 'dry-initializer'
 class ApplicationOperation
   extend Dry::Initializer
 
-  include ContractErrorParser
+  include Support::ApplicationContract::ErrorParser
 
   def validate(contract)
     result = contract.call(params.as_json)
@@ -19,7 +19,7 @@ class ApplicationOperation
   private
 
   def contract_failure(result, contract)
-    Failure(contract_errors_handler(result, contract))
+    Failure(contract_error_parser(result, contract))
   end
 
   def contract_success(result)

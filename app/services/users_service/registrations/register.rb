@@ -3,7 +3,7 @@
 module UsersService
   module Registrations
     class Register < ApplicationService
-      include DoorkeeperHelper
+      include Support::Doorkeeper::CustomRegisterResponse
 
       option :params, type: Types::Hash
       option :doorkeeper_application, type: Types.Instance(Doorkeeper::Application)
@@ -12,7 +12,7 @@ module UsersService
         ActiveRecord::Base.transaction(requires_new: true) do
           user = yield create_user
           access_token = yield create_access_token(user)
-          response = registration_response(user, access_token)
+          response = body(user, access_token)
 
           Success(response)
         end
