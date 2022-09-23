@@ -6,7 +6,9 @@ require 'dry-initializer'
 class ApplicationOperation
   extend Dry::Initializer
 
-  include Support::ApplicationContract::ErrorParser
+  include Dry::Monads
+  include Dry::Monads::Do
+  include Supports::ApplicationContract::ErrorParser
 
   def validate(contract)
     result = contract.call(params.as_json)

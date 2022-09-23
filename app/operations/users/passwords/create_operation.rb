@@ -3,9 +3,6 @@
 module Users
   module Passwords
     class CreateOperation < ApplicationOperation
-      include Dry::Monads[:result]
-      include Dry::Monads::Do.for(:call)
-
       option :params
       option :contract, default: proc { Users::Passwords::SendInstructionsContract.new }
 

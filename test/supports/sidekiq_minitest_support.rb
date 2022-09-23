@@ -3,7 +3,7 @@
 module Supports
   module SidekiqMinitestSupport
     def after_teardown
-      Sidekiq::Worker.clear_all
+      ::Sidekiq::Worker.clear_all
       super
     end
   end

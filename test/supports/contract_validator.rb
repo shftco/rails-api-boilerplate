@@ -3,7 +3,7 @@
 # rubocop:disable Metrics/ModuleLength
 module Supports
   module ContractValidator
-    include Support::ApplicationContract::ErrorParser
+    include Supports::ApplicationContract::ErrorParser
 
     def success?(result, key, contract)
       assert_not_includes contract_error_messages(result, contract).keys, key
@@ -144,7 +144,7 @@ module Supports
     end
 
     def check_i18n_translations_for(contract, errors, locale)
-      params = errors.keys.map { |k| k.to_s.split(Support::ApplicationContract::ErrorParser::TEST_KEYS_SPLITTER) }.flatten
+      params = errors.keys.map { |k| k.to_s.split(Supports::ApplicationContract::ErrorParser::TEST_KEYS_SPLITTER) }.flatten
 
       params.each do |param|
         translation = I18n.t("contracts.#{format_contract_name(contract)}.params.#{param}", locale:)

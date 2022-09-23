@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # https://github.com/doorkeeper-gem/doorkeeper/blob/main/lib/doorkeeper/oauth/token_response.rb
-module Support
+module Supports
   module Doorkeeper
     module CustomTokenResponse
       def body
