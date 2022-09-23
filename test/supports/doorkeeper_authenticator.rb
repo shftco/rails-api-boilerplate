@@ -2,7 +2,7 @@
 
 module Supports
   module DoorkeeperAuthenticator
-    def oauth_token_params(user, application, grant_type = Doorkeeper.config.grant_flows.first)
+    def oauth_token_params(user, application, grant_type = ::Doorkeeper.config.grant_flows.first)
       {
         grant_type:,
         email: user.email,

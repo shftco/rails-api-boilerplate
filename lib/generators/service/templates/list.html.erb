@@ -1,9 +1,6 @@
 # frozen_string_literal: true
 
 class <%= service_class_name %>::List < ApplicationService
-  include Dry::Monads[:result]
-  include Dry::Monads::Do.for(:call)
-
   option :pagination, type: Types.Instance(ParameterObject::Pagination)
   option :query, type: Types.Instance(ParameterObject::Query)
 

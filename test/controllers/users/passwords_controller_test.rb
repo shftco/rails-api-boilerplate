@@ -22,7 +22,7 @@ module Users
 
       body = load_body(response)
 
-      assert_equal I18n.t('.devise.passwords.send_instructions'), body[:message]
+      assert_equal I18n.t('devise.passwords.send_instructions'), body.message
       assert_response :ok
     end
 
@@ -84,7 +84,7 @@ module Users
 
       body = load_body(response)
 
-      assert_equal I18n.t('.devise.passwords.updated_not_active'), body[:message]
+      assert_equal I18n.t('devise.passwords.updated_not_active'), body.message
       assert_response :ok
     end
 

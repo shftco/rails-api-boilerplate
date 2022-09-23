@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Support
+module Supports
   module ApplicationContract
     module ErrorParser
       TEST_KEYS_SPLITTER = '_of_'

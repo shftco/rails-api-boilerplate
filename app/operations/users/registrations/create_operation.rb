@@ -3,9 +3,6 @@
 module Users
   module Registrations
     class CreateOperation < ApplicationOperation
-      include Dry::Monads[:result]
-      include Dry::Monads::Do.for(:call)
-
       option :params
       option :doorkeeper_application, type: Types.Instance(Doorkeeper::Application)
       option :contract, default: proc { Users::Registrations::RegisterContract.new }

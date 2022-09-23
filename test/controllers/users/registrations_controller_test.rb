@@ -22,7 +22,7 @@ module Users
 
       body = load_body(response)
 
-      assert_equal params[:email], body[:user][:email]
+      assert_equal params[:email], body.user.email
       assert_response :created
     end
 

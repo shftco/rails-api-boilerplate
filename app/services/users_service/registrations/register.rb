@@ -3,7 +3,7 @@
 module UsersService
   module Registrations
     class Register < ApplicationService
-      include Support::Doorkeeper::CustomRegisterResponse
+      include Supports::Doorkeeper::CustomRegisterResponse
 
       option :params, type: Types::Hash
       option :doorkeeper_application, type: Types.Instance(Doorkeeper::Application)
