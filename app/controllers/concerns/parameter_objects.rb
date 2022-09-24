@@ -5,12 +5,16 @@ module ParameterObjects
 
   included do
     def pagination_object
-      CustomObjects::ParameterObject::Pagination.new(page: params[:page],
-                                                     per_page: params[:per_page])
+      page = params.fetch(:page, 1)
+      per_page = params.fetch(:per_page, Kaminari.config.default_per_page)
+
+      CustomObjects::ParameterObject::Pagination.new(page:, per_page:)
     end
 
     def query_object
-      CustomObjects::ParameterObject::Query.new(query: params[:query])
+      query = params.fetch(:query, {})
+
+      CustomObjects::ParameterObject::Query.new(query:)
     end
   end
 end
