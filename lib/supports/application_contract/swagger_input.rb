@@ -30,11 +30,11 @@ module Supports
         private
 
         def custom_schema_name
-          "#{self.name.gsub('::','')}Input".to_sym
+          "#{name.gsub('::', '')}Input".to_sym
         end
-  
+
         def custom_json_schema
-          json_schema = self.schema.json_schema(loose: true)
+          json_schema = schema.json_schema(loose: true)
 
           {
             type: json_schema[:type],

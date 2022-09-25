@@ -21,7 +21,9 @@ module UsersService
       private
 
       def create_user
-        UsersService::Create.new(params:).call
+        allowed_params = params.except(:client_id, :client_secret)
+
+        UsersService::Create.new(params: allowed_params).call
       end
 
       def create_access_token(user)

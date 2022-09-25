@@ -18,7 +18,7 @@ module Users
     private
 
     def registration_params
-      params.permit(:email, :password)
+      params.permit(:email, :password, :client_id, :client_secret)
     end
   end
 end
