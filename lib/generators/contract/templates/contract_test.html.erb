@@ -10,16 +10,16 @@ class <%= contract_class_name %>ContractTest < ActiveSupport::TestCase
   end
 
   test 'validate#foo' do
-    success?(validate(payload: { foo: 'test' }), :foo, CONTRACT
-    filled?(validate(payload: { foo: nil }), :foo, CONTRACT
-    filled?(validate(payload: { foo: '' }), :foo, CONTRACT
-    invalid?(validate(payload: { foo: 'invalid foo' }), :foo, CONTRACT
+    success?(validate(payload: { foo: 'test' }), :foo, CONTRACT)
+    filled?(validate(payload: { foo: nil }), :foo, CONTRACT)
+    filled?(validate(payload: { foo: '' }), :foo, CONTRACT)
+    invalid?(validate(payload: { foo: 'invalid foo' }), :foo, CONTRACT)
   end
 
   test 'validate#bar' do
-    success?(validate(payload: { bar: 'test' }), :bar, CONTRACT
-    filled?(validate(payload: { bar: nil }), :bar, CONTRACT
-    filled?(validate(payload: { bar: '' }), :bar, CONTRACT
-    min_size?(validate(payload: { bar: '12345' }), :bar, 6, CONTRACT
+    success?(validate(payload: { bar: 'test' }), :bar, CONTRACT)
+    filled?(validate(payload: { bar: nil }), :bar, CONTRACT)
+    filled?(validate(payload: { bar: '' }), :bar, CONTRACT)
+    min_size?(validate(payload: { bar: '12345' }), :bar, 6, CONTRACT)
   end
 end
