@@ -1,70 +1,40 @@
 # frozen_string_literal: true
 
 class ServiceGenerator < Rails::Generators::NamedBase
-  source_root File.expand_path('templates', __dir__)
+  argument :params, type: :array, default: [], banner: 'action action'
+  class_option :parent, type: :string, default: 'ApplicationService', desc: 'The parent class for the generated service'
 
   check_class_collision suffix: 'Service'
 
-  class_option :actions, type: :array, default: [], banner: 'create update'
+  source_root File.expand_path('templates', __dir__)
 
-  ALLOWED_ACTIONS = %w[create update destroy list].freeze
+  def create_service_files
+    template 'service.rb', File.join('app/services/', class_path, "#{file_name}_service.rb")
+    template 'service_test.rb', File.join('test/services/', class_path, "#{file_name}_service_test.rb")
 
-  def create_service_file
-    check_validity!
-    options[:actions].size.zero? ? create_service_file_without_actions : create_service_file_with_actions
+    system("rubocop -A #{service_file_path}")
+    system("rubocop -A #{service_test_file_path}")
   end
 
   private
 
-  def create_service_file_without_actions
-    ALLOWED_ACTIONS.each do |action|
-      create_template(action)
-    end
+  def service_file_path
+    "app/services/#{class_path.join('/')}/#{file_name}_service.rb"
   end
 
-  def create_service_file_with_actions
-    options[:actions].each do |action|
-      create_template(action)
-    end
+  def service_test_file_path
+    "test/services/#{class_path.join('/')}/#{file_name}_service_test.rb"
   end
 
-  def create_template(action)
-    template(
-      "#{action}.html.erb",
-      File.join("app/services/#{create_service_file_name}_service", create_file_path, "#{action}.rb")
-    )
-
-    template(
-      "#{action}_test.html.erb",
-      File.join("test/services/#{create_service_file_name}_service", create_file_path, "#{action}_test.rb")
-    )
+  def parent_class_name
+    options[:parent]
   end
 
-  def service_classes
-    class_name.split('::')
+  def file_name
+    @_file_name ||= remove_possible_suffix(super)
   end
 
-  def create_file_path
-    path = service_classes
-    path.shift
-    path.join('/').underscore
-  end
-
-  def create_service_file_name
-    (class_path.size.zero? ? file_path : class_path.first).singularize
-  end
-
-  def service_class_name
-    if service_classes.size == 1
-      "#{class_name.singularize.camelize}Service"
-    else
-      class_names = service_classes
-      class_names[0] = "#{class_names.first.singularize.camelize}Service"
-      class_names.join('::')
-    end
-  end
-
-  def check_validity!
-    raise "Invalid actions: #{options[:actions].join(', ')}" unless options[:actions].all? { |action| ALLOWED_ACTIONS.include?(action) }
+  def remove_possible_suffix(name)
+    name.sub(/_?service$/i, '')
   end
 end
