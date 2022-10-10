@@ -3,6 +3,8 @@
 require 'dry-validation'
 
 class ApplicationContract < Dry::Validation::Contract
+  include Supports::ApplicationContract::SwaggerInput
+
   config.messages.backend = :i18n
 
   register_macro(:password_confirmation) do

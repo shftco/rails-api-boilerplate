@@ -27,7 +27,7 @@ module Users
     private
 
     def password_params
-      params.permit(:email, :reset_password_token, :password, :password_confirmation)
+      params.permit(:email, :reset_password_token, :password, :password_confirmation, :client_id, :client_secret)
     end
   end
 end

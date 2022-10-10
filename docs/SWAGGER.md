@@ -53,6 +53,41 @@ end
 ```
 ---
 ### Sample input
+All contracts are generating automatically as swagger input components for using easily.
+
+**Auto generated:**
+
+Sample contract:
+```ruby
+# frozen_string_literal: true
+
+module Users
+  module Passwords
+    class SendInstructionsContract < ApplicationContract
+      params do
+        required(:email).filled(Types::Email)
+        required(:client_id).filled(:string)
+        required(:client_secret).filled(:string)
+      end
+    end
+  end
+end
+```
+
+You can use just referring name as belowing:
+```ruby
+request_body do
+  key :description, 'User credentials'
+  key :required, true
+  content :'application/json' do
+    schema do
+      key :'$ref', :UsersPasswordsSendInstructionsContractInput
+    end
+  end
+end
+```
+
+**Custom:**
 ```ruby
 # frozen_string_literal: true
 

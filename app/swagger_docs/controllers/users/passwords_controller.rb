@@ -19,7 +19,7 @@ module Controllers
             key :required, true
             content :'application/json' do
               schema do
-                key :'$ref', :UserResetPasswordInput
+                key :'$ref', :UsersPasswordsSendInstructionsContractInput
               end
             end
           end
@@ -65,7 +65,7 @@ module Controllers
             key :required, true
             content :'application/json' do
               schema do
-                key :'$ref', :UserUpdatePasswordInput
+                key :'$ref', :UsersPasswordsUpdateContractInput
               end
             end
           end

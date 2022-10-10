@@ -7,12 +7,18 @@ tr:
           params:
             email: E-posta
             password: Şifre
+            client_id: 'İstemci kimliği'
+            client_secret: 'İstemci parolası'
       passwords:
         updatecontract:
           params:
             password: Şifre
             password_confirmation: Şifre onayı
             reset_password_token: Şifre sıfırlama jetonu
+            client_id: 'İstemci kimliği'
+            client_secret: 'İstemci parolası'
         sendinstructionscontract:
           params:
             email: E-posta
+            client_id: 'İstemci kimliği'
+            client_secret: 'İstemci parolası'

@@ -3,6 +3,8 @@
 class SwaggerDocs
   include Swagger::Blocks
 
+  CONTACT_CLASSES = ApplicationContract.contract_classes
+
   SWAGGERED_CLASSES = [
     ## Controllers ##
     Controllers::Users::TokensController,
@@ -13,9 +15,6 @@ class SwaggerDocs
     Models::Meta,
     ## Inputs ##
     Inputs::User::SignInInput,
-    Inputs::User::SignUpInput,
-    Inputs::User::ResetPasswordInput,
-    Inputs::User::UpdatePasswordInput,
     Inputs::User::RevokeInput,
     ## Responses ##
     Responses::User::SignInResponse,
@@ -24,7 +23,7 @@ class SwaggerDocs
     Responses::User::UpdatePasswordResponse,
     Responses::ErrorResponse,
     self
-  ].freeze
+  ].concat(CONTACT_CLASSES).freeze
 
   swagger_root do
     key :openapi, '3.0.0'

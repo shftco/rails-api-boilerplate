@@ -19,7 +19,7 @@ module Controllers
             key :required, true
             content :'application/json' do
               schema do
-                key :'$ref', :UserSignUpInput
+                key :'$ref', :UsersRegistrationsRegisterContractInput
               end
             end
           end
