@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-module UsersService
-  class Create < ApplicationService
+module Users
+  class CreateService < ApplicationService
     option :params, type: Types::Hash
 
     def call

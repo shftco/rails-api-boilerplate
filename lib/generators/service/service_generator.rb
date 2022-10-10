@@ -12,6 +12,8 @@ class ServiceGenerator < Rails::Generators::NamedBase
     template 'service.rb', File.join('app/services/', class_path, "#{file_name}_service.rb")
     template 'service_test.rb', File.join('test/services/', class_path, "#{file_name}_service_test.rb")
 
+    return unless Rails.env.development?
+
     system("rubocop -A #{service_file_path}")
     system("rubocop -A #{service_test_file_path}")
   end

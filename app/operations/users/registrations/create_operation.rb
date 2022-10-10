@@ -17,7 +17,7 @@ module Users
       private
 
       def register_user(contract_params)
-        UsersService::Registrations::Register.new(params: contract_params, doorkeeper_application:).call
+        Users::Registrations::RegisterService.new(params: contract_params, doorkeeper_application:).call
       end
     end
   end

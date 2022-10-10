@@ -2,9 +2,9 @@
 
 require 'test_helper'
 
-module UsersService
+module Users
   module Passwords
-    class UpdateTest < ActiveSupport::TestCase
+    class UpdateServiceTest < ActiveSupport::TestCase
       attr_reader :user
 
       def setup
@@ -19,7 +19,7 @@ module UsersService
                    password_confirmation: '123456' }
 
         assert_changes -> { user.updated_at } do
-          service = UsersService::Passwords::Update.new(params:).call
+          service = Users::Passwords::UpdateService.new(params:).call
 
           user.reload
 
@@ -34,7 +34,7 @@ module UsersService
                    password_confirmation: '123456' }
 
         assert_no_changes -> { user.updated_at } do
-          service = UsersService::Passwords::Update.new(params:).call
+          service = Users::Passwords::UpdateService.new(params:).call
 
           user.reload
 

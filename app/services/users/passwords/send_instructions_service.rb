@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-module UsersService
+module Users
   module Passwords
-    class SendInstructions < ApplicationService
+    class SendInstructionsService < ApplicationService
       option :params, type: Types::Hash
 
       def call

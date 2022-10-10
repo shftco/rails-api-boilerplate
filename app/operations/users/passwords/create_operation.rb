@@ -16,7 +16,7 @@ module Users
       private
 
       def send_instructions(contract_params)
-        UsersService::Passwords::SendInstructions.new(params: contract_params).call
+        Users::Passwords::SendInstructionsService.new(params: contract_params).call
       end
     end
   end

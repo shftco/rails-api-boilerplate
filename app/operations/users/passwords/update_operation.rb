@@ -16,7 +16,7 @@ module Users
       private
 
       def update_password(contract_params)
-        UsersService::Passwords::Update.new(params: contract_params).call
+        Users::Passwords::UpdateService.new(params: contract_params).call
       end
     end
   end
