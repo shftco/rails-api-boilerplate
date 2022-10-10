@@ -17,7 +17,7 @@ class ContractGeneratorTest < Rails::Generators::TestCase
   test 'generator creates contract' do
     run_generator ['Customer::Create']
 
-    assert_file 'app/contracts/customers/create_contract.rb'
-    assert_file 'test/contracts/customers/create_contract_test.rb'
+    assert_file 'app/contracts/customer/create_contract.rb'
+    assert_file 'test/contracts/customer/create_contract_test.rb'
   end
 end
