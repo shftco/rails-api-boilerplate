@@ -12,6 +12,8 @@ class ContractGenerator < Rails::Generators::NamedBase
     template 'contract.rb', File.join('app/contracts/', class_path, "#{file_name}_contract.rb")
     template 'contract_test.rb', File.join('test/contracts/', class_path, "#{file_name}_contract_test.rb")
 
+    return unless Rails.env.development?
+
     system("rubocop -A #{contract_file_path}")
     system("rubocop -A #{contract_test_file_path}")
   end
