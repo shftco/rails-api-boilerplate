@@ -2,9 +2,9 @@
 
 require 'test_helper'
 
-module UsersService
+module Users
   module Passwords
-    class SendInstructionsTest < ActiveSupport::TestCase
+    class SendInstructionsServiceTest < ActiveSupport::TestCase
       attr_reader :user
 
       def setup
@@ -15,7 +15,7 @@ module UsersService
         params = { email: user.email }
 
         assert_changes -> { user.updated_at } do
-          service = UsersService::Passwords::SendInstructions.new(params:).call
+          service = Users::Passwords::SendInstructionsService.new(params:).call
 
           user.reload
 
@@ -28,7 +28,7 @@ module UsersService
         params = { email: 'test@development.com' }
 
         assert_no_changes -> { user.updated_at } do
-          service = UsersService::Passwords::SendInstructions.new(params:).call
+          service = Users::Passwords::SendInstructionsService.new(params:).call
 
           user.reload
 

@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-module DoorkeeperService
+module Doorkeeper
   module AccessTokens
-    class Create < ApplicationService
+    class CreateService < ApplicationService
       option :doorkeeper_application, type: Types.Instance(Doorkeeper::Application)
       option :user, type: Types.Instance(User)
 

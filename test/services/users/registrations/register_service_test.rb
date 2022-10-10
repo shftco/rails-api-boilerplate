@@ -2,9 +2,9 @@
 
 require 'test_helper'
 
-module UsersService
+module Users
   module Registrations
-    class RegisterTest < ActiveSupport::TestCase
+    class RegisterServiceTest < ActiveSupport::TestCase
       attr_reader :params, :doorkeeper_application
 
       def setup
@@ -14,7 +14,7 @@ module UsersService
 
       test 'should register user' do
         assert_difference(['User.count', 'Doorkeeper::AccessToken.count'], 1) do
-          service = UsersService::Registrations::Register.new(params:, doorkeeper_application:).call
+          service = Users::Registrations::RegisterService.new(params:, doorkeeper_application:).call
 
           user = service.success[:user]
 
@@ -25,11 +25,11 @@ module UsersService
 
       test 'should return error if something goes wrong while creating doorkeeper access token' do
         access_token_service_mock = mock
-        DoorkeeperService::AccessTokens::Create.expects(:new).returns(access_token_service_mock)
+        Doorkeeper::AccessTokens::CreateService.expects(:new).returns(access_token_service_mock)
         access_token_service_mock.expects(:call).returns(Dry::Monads::Result::Failure.new(:failed_because_of_me))
 
         assert_no_difference(['User.count', 'Doorkeeper::AccessToken.count']) do
-          service = UsersService::Registrations::Register.new(params:, doorkeeper_application:).call
+          service = Users::Registrations::RegisterService.new(params:, doorkeeper_application:).call
 
           assert service.failure?
           assert_equal :failed_because_of_me, service.failure
@@ -38,11 +38,11 @@ module UsersService
 
       test 'should fail if user service returns failure' do
         user_service = mock
-        UsersService::Create.expects(:new).returns(user_service)
+        Users::CreateService.expects(:new).returns(user_service)
         user_service.expects(:call).returns(Dry::Monads::Result::Failure.new(:failed_because_of_me))
 
         assert_no_difference(['User.count', 'Doorkeeper::AccessToken.count']) do
-          service = UsersService::Registrations::Register.new(params:, doorkeeper_application:).call
+          service = Users::Registrations::RegisterService.new(params:, doorkeeper_application:).call
 
           assert service.failure?
           assert_equal :failed_because_of_me, service.failure
