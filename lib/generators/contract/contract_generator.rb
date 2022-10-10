@@ -1,47 +1,40 @@
 # frozen_string_literal: true
 
 class ContractGenerator < Rails::Generators::NamedBase
-  source_root File.expand_path('templates', __dir__)
+  argument :params, type: :array, default: [], banner: 'action action'
+  class_option :parent, type: :string, default: 'ApplicationContract', desc: 'The parent class for the generated contract'
 
   check_class_collision suffix: 'Contract'
 
-  def create_contract_files
-    template(
-      'contract.html.erb',
-      File.join("app/contracts/#{create_contract_file_name}#{create_file_path}.rb")
-    )
+  source_root File.expand_path('templates', __dir__)
 
-    # test
-    template(
-      'contract_test.html.erb',
-      File.join("test/contracts/#{create_contract_file_name}#{create_file_path}_test.rb")
-    )
+  def create_contract_files
+    template 'contract.rb', File.join('app/contracts/', class_path, "#{file_name}_contract.rb")
+    template 'contract_test.rb', File.join('test/contracts/', class_path, "#{file_name}_contract_test.rb")
+
+    system("rubocop -A #{contract_file_path}")
+    system("rubocop -A #{contract_test_file_path}")
   end
 
   private
 
-  def contract_classes
-    class_name.split('::')
+  def contract_file_path
+    "app/contracts/#{class_path.join('/')}/#{file_name}_contract.rb"
   end
 
-  def create_file_path
-    path = contract_classes
-    path.shift
-    path = path.join('/').underscore
-    path.empty? ? '' : "/#{path}_contract"
+  def contract_test_file_path
+    "test/contracts/#{class_path.join('/')}/#{file_name}_contract_test.rb"
   end
 
-  def create_contract_file_name
-    (class_path.size.zero? ? file_path : class_path.first).pluralize
+  def parent_class_name
+    options[:parent]
   end
 
-  def contract_class_name
-    if contract_classes.size == 1
-      class_name.pluralize.camelize.to_s
-    else
-      class_names = contract_classes
-      class_names[0] = class_names.first.pluralize.camelize.to_s
-      class_names.join('::')
-    end
+  def file_name
+    @_file_name ||= remove_possible_suffix(super)
+  end
+
+  def remove_possible_suffix(name)
+    name.sub(/_?contract$/i, '')
   end
 end

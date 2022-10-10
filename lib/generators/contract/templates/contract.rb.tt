@@ -1,0 +1,11 @@
+# frozen_string_literal: true
+
+<% module_namespacing do -%>
+class <%= class_name %>Contract < <%= parent_class_name.classify %>
+  params do
+<% params.each do |param| -%>
+    required(:<%= param %>) {}
+<% end -%>
+  end
+end
+<% end -%>

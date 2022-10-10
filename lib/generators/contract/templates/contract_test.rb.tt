@@ -1,0 +1,19 @@
+# frozen_string_literal: true
+
+require 'test_helper'
+
+<% module_namespacing do -%>
+class <%= class_name %>ContractTest < <%= ActiveSupport::TestCase %>
+  CONTRACT = <%= class_name %>Contract.new
+
+  def validate(payload: {})
+    CONTRACT.call(payload)
+  end
+
+<% params.each do |param| -%>
+  test 'validate#<%= param %>' do
+  end
+
+<% end -%>
+end
+<% end -%>

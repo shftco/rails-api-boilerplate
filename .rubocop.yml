@@ -64,3 +64,7 @@ Style/StringLiterals:
 Style/StringLiteralsInInterpolation:
   Enabled: true
   EnforcedStyle: single_quotes
+
+Naming/MemoizedInstanceVariableName:
+  Exclude:
+    - 'lib/generators/**/*.rb'

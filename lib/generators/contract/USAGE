@@ -1,8 +1,8 @@
 Description:
-    Creates a contract classes
+    Creates a new contract
 
 Example:
-    bin/rails generate contract Customer::Create
+    bin/rails generate contract Customer::Create email fullname
 
     This will create:
         app/contracts/customers/create_contract.rb

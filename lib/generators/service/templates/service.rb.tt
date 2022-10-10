@@ -1,0 +1,24 @@
+# frozen_string_literal: true
+
+<% module_namespacing do -%>
+class <%= class_name %>Service < <%= parent_class_name.classify %>
+<% params.each do |param| -%>
+  option :<%= param %>, type: <%= param == 'params' ? 'Types::Hash' : 'Types::GiveMeValidType' %> 
+<% end -%>
+
+  def call
+    result = yield call_something
+
+    Success(result)
+  end
+
+  private
+
+  def call_something
+    # must be return Success or Failure
+
+    # call some service ex: Foo::Bar.new(params).call
+    # or manual ex: Success(Record.all)
+  end
+end
+<% end -%>

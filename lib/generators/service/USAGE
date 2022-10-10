@@ -1,11 +1,9 @@
 Description:
-    Creates a service class
+    Creates a new service
 
 Example:
-    bin/rails generate service Facebook::Ad
+    bin/rails generate service Facebook::Ad current_user params
 
     This will create:
-        app/services/facebook_service/ad/create.rb
-        app/services/facebook_service/ad/destroy.rb
-        app/services/facebook_service/ad/update.rb
-        app/services/facebook_service/ad/list.rb
+        app/services/facebook_service/ad/create_service.rb
+        test/services/facebook_service/ad/create_service_test.rb
