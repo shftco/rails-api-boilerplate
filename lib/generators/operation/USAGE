@@ -1,0 +1,9 @@
+Description:
+    Creates a new operation
+
+Example:
+    bin/rails generate operation Customer::Create current_user params
+
+    This will create:
+        app/operations/customer/create_operation.rb
+        test/operations/customer/create_operation_test.rb

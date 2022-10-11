@@ -11,7 +11,7 @@ class ApplicationOperation
   include Supports::ApplicationContract::ErrorParser
 
   def validate(contract)
-    result = contract.call(params.as_json)
+    result = contract.call(params.to_h)
 
     return contract_success(result) if result.success?
 
