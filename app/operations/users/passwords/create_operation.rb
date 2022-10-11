@@ -8,14 +8,14 @@ module Users
 
       def call
         contract_params = yield validate(contract)
-        result = yield send_instructions(contract_params)
+        result = yield call_service(contract_params)
 
         Success(result)
       end
 
       private
 
-      def send_instructions(contract_params)
+      def call_service(contract_params)
         Users::Passwords::SendInstructionsService.new(params: contract_params).call
       end
     end

@@ -7,7 +7,7 @@ module Users
     class CreateOperationTest < ActiveSupport::TestCase
       test 'should pass contract validation then calling the service' do
         params_mock = mock
-        params_mock.expects(:as_json).returns(params_mock)
+        params_mock.expects(:to_h).returns(params_mock)
 
         contract_mock = mock
         Users::Passwords::SendInstructionsContract.expects(:new).returns(contract_mock)
@@ -38,7 +38,7 @@ module Users
 
       test 'should return errors if something goes wrong while executing service' do
         params_mock = mock
-        params_mock.expects(:as_json).returns(params_mock)
+        params_mock.expects(:to_h).returns(params_mock)
 
         contract_mock = mock
         Users::Passwords::SendInstructionsContract.expects(:new).returns(contract_mock)

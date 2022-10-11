@@ -1,0 +1,23 @@
+# frozen_string_literal: true
+
+<% module_namespacing do -%>
+class <%= class_name %>Service < <%= parent_class_name.classify %>
+<% params.each do |param| -%>
+  option :<%= param %>, type: Types<%= param == 'params' ? '.Instance(ActionController::Parameters) | Types::Hash' : '::GiveMeValidType' %>
+<% end -%>
+  option :contract, default: proc { <%= class_name %>Contract.new }
+
+  def call
+    contract_params = yield validate(contract)
+    result = yield call_service(contract_params)
+
+    Success(result)
+  end
+
+  private
+
+  def call_service(contract_params)
+    <%= class_name %>Service.new(params: contract_params).call
+  end
+end
+<% end -%>

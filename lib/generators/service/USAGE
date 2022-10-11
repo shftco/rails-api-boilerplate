@@ -5,5 +5,5 @@ Example:
     bin/rails generate service Facebook::Ad current_user params
 
     This will create:
-        app/services/facebook_service/ad/create_service.rb
-        test/services/facebook_service/ad/create_service_test.rb
+        app/services/facebook/ad/create_service.rb
+        test/services/facebook/ad/create_service_test.rb
