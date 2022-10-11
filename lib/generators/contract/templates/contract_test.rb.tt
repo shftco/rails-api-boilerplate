@@ -6,7 +6,7 @@ require 'test_helper'
 class <%= class_name %>ContractTest < <%= ActiveSupport::TestCase %>
   CONTRACT = <%= class_name %>Contract.new
 
-  def validate(payload: {})
+  def validate(payload = {})
     CONTRACT.call(payload)
   end
 

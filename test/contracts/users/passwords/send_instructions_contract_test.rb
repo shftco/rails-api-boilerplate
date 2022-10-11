@@ -7,15 +7,15 @@ module Users
     class SendInstructionsContractTest < ActiveSupport::TestCase
       CONTRACT = Users::Passwords::SendInstructionsContract.new
 
-      def validate(payload: {})
+      def validate(payload = {})
         CONTRACT.call(payload)
       end
 
       test 'validate#email' do
-        success?(validate(payload: { email: 'test@test.com' }), :email, CONTRACT)
-        filled?(validate(payload: { email: nil }), :email, CONTRACT)
-        filled?(validate(payload: { email: '' }), :email, CONTRACT)
-        invalid?(validate(payload: { email: 'invalid email' }), :email, CONTRACT)
+        success?(validate({ email: 'test@test.com' }), :email, CONTRACT)
+        filled?(validate({ email: nil }), :email, CONTRACT)
+        filled?(validate({ email: '' }), :email, CONTRACT)
+        format?(validate({ email: 'invalid email' }), :email, CONTRACT)
       end
     end
   end

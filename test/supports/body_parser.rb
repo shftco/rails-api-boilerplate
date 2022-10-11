@@ -3,7 +3,7 @@
 module Supports
   module BodyParser
     def load_body(response)
-      JSON.parse(response.body, symbolize_names: true, object_class: OpenStruct)
+      JSON.parse(response.body, object_class: OpenStruct)
     end
 
     def errors_count(response)

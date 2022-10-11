@@ -3,7 +3,6 @@ tr:
   dry_validation:
     keys_splitter: ' içindeki '
     errors:
-      invalid?: geçersiz
       same_password?: eşleşmiyor
       array?: dizi olmalı
       attr?: eksik
