@@ -7,22 +7,22 @@ module Users
     class RegisterContractTest < ActiveSupport::TestCase
       CONTRACT = Users::Registrations::RegisterContract.new
 
-      def validate(payload: {})
+      def validate(payload = {})
         CONTRACT.call(payload)
       end
 
       test 'validate#email' do
-        success?(validate(payload: { email: 'test@test.com' }), :email, CONTRACT)
-        filled?(validate(payload: { email: nil }), :email, CONTRACT)
-        filled?(validate(payload: { email: '' }), :email, CONTRACT)
-        format?(validate(payload: { email: 'invalid email' }), :email, CONTRACT)
+        success?(validate({ email: 'test@test.com' }), :email, CONTRACT)
+        filled?(validate({ email: nil }), :email, CONTRACT)
+        filled?(validate({ email: '' }), :email, CONTRACT)
+        format?(validate({ email: 'invalid email' }), :email, CONTRACT)
       end
 
       test 'validate#password' do
-        success?(validate(payload: { password: '123456' }), :password, CONTRACT)
-        filled?(validate(payload: { password: nil }), :password, CONTRACT)
-        filled?(validate(payload: { password: '' }), :password, CONTRACT)
-        min_size?(validate(payload: { password: '12345' }), :password, 6, CONTRACT)
+        success?(validate({ password: '123456' }), :password, CONTRACT)
+        filled?(validate({ password: nil }), :password, CONTRACT)
+        filled?(validate({ password: '' }), :password, CONTRACT)
+        min_size?(validate({ password: '12345' }), :password, 6, CONTRACT)
       end
     end
   end
