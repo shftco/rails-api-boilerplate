@@ -10,8 +10,8 @@ class <%= class_name %>ContractTest < <%= ActiveSupport::TestCase %>
     CONTRACT.call(payload)
   end
 
-<% params.each do |param| -%>
-  test 'validate#<%= param %>' do
+<% formatted_params.each do |param| -%>
+  test 'validate#<%= param.last %>' do
   end
 
 <% end -%>
