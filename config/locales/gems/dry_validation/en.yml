@@ -3,5 +3,4 @@ en:
   dry_validation:
     keys_splitter: ' of '
     errors:
-      invalid?: invalid
       same_password?: does not match

@@ -11,101 +11,101 @@ module Supports
 
     def filled?(result, key, contract)
       assert_includes contract_error_messages(result, contract).keys, key
-      assert_includes contract_error_messages(result, contract)[key], 'must be filled'
+      assert_includes contract_error_messages(result, contract)[key], I18n.t('dry_validation.errors.filled?')
     end
 
     def str?(result, key, contract)
       assert_includes contract_error_messages(result, contract).keys, key
-      assert_includes contract_error_messages(result, contract)[key], 'must be a string'
+      assert_includes contract_error_messages(result, contract)[key], I18n.t('dry_validation.errors.str?')
     end
 
     def max_size?(result, key, max_size, contract)
       assert_includes contract_error_messages(result, contract).keys, key
-      assert_includes contract_error_messages(result, contract)[key], "can't be longer than #{max_size} characters"
+      assert_includes contract_error_messages(result, contract)[key], I18n.t('dry_validation.errors.max_size?', num: max_size)
     end
 
     def min_size?(result, key, min_size, contract)
       assert_includes contract_error_messages(result, contract).keys, key
-      assert_includes contract_error_messages(result, contract)[key], "size cannot be less than #{min_size}"
+      assert_includes contract_error_messages(result, contract)[key], I18n.t('dry_validation.errors.min_size?', num: min_size)
     end
 
-    def min_max_size?(result, key, min_size, max_size, contract)
+    def size_range?(result, key, size_left, size_right, contract)
       assert_includes contract_error_messages(result, contract).keys, key
-      assert_includes contract_error_messages(result, contract)[key], "size must be within #{min_size} - #{max_size}"
+      assert_includes contract_error_messages(result, contract)[key], I18n.t('dry_validation.errors.size?.arg.range', size_left:, size_right:)
     end
 
-    def eql?(result, key, eql, contract)
+    def eql?(result, key, left, contract)
       assert_includes contract_error_messages(result, contract).keys, key
-      assert_includes contract_error_messages(result, contract)[key], "must be equal to #{eql}"
+      assert_includes contract_error_messages(result, contract)[key], I18n.t('dry_validation.errors.eql?', left:)
+    end
+
+    def not_eql?(result, key, left, contract)
+      assert_includes contract_error_messages(result, contract).keys, key
+      assert_includes contract_error_messages(result, contract)[key], I18n.t('dry_validation.errors.not_eql?', left:)
     end
 
     def included_in?(result, key, values, contract)
       assert_includes contract_error_messages(result, contract).keys, key
-      assert_includes contract_error_messages(result, contract)[key], "must be one of: #{values.join(', ')}"
+      assert_includes contract_error_messages(result, contract)[key], I18n.t('dry_validation.errors.included_in?.arg.default', list: values.join(', '))
     end
 
     def decimal?(result, key, contract)
       assert_includes contract_error_messages(result, contract).keys, key
-      assert_includes contract_error_messages(result, contract)[key], 'must be a decimal'
+      assert_includes contract_error_messages(result, contract)[key], I18n.t('dry_validation.errors.decimal?')
     end
 
     def int?(result, key, contract)
       assert_includes contract_error_messages(result, contract).keys, key
-      assert_includes contract_error_messages(result, contract)[key], 'must be an integer'
+      assert_includes contract_error_messages(result, contract)[key], I18n.t('dry_validation.errors.int?')
     end
 
     def float?(result, key, contract)
       assert_includes contract_error_messages(result, contract).keys, key
-      assert_includes contract_error_messages(result, contract)[key], 'must be a float'
+      assert_includes contract_error_messages(result, contract)[key], I18n.t('dry_validation.errors.float?')
     end
 
     def filled_optional?(result, key, contract)
       assert_not_includes contract_error_messages(result, contract).keys, key
     end
 
-    def size?(result, key, size)
-      assert_includes contract_error_messages(result, contract).keys, key
-      assert_includes contract_error_messages(result, contract)[key], "Must be #{size} digits"
-    end
-
     def format?(result, key, contract)
       assert_includes contract_error_messages(result, contract).keys, key
-      assert_includes contract_error_messages(result, contract)[key], 'is in invalid format'
+      assert_includes contract_error_messages(result, contract)[key], I18n.t('dry_validation.errors.format?')
     end
 
     def gteq?(result, key, num, contract)
       assert_includes contract_error_messages(result, contract).keys, key
-      assert_includes contract_error_messages(result, contract)[key], "must be greater than or equal to #{num}"
+      assert_includes contract_error_messages(result, contract)[key], I18n.t('dry_validation.errors.gteq?', num:)
     end
 
     def gt?(result, key, num, contract)
       assert_includes contract_error_messages(result, contract).keys, key
-      assert_includes contract_error_messages(result, contract)[key], "must be greater than #{num}"
+      assert_includes contract_error_messages(result, contract)[key], I18n.t('dry_validation.errors.gt?', num:)
     end
 
     def lt?(result, key, num, contract)
       assert_includes contract_error_messages(result, contract).keys, key
-      assert_includes contract_error_messages(result, contract)[key], "must be less than #{num}"
+      assert_includes contract_error_messages(result, contract)[key], I18n.t('dry_validation.errors.lt?', num:)
     end
 
     def lteq?(result, key, num, contract)
       assert_includes contract_error_messages(result, contract).keys, key
-      assert_includes contract_error_messages(result, contract)[key], "must be less than or equal to #{num}"
+      assert_includes contract_error_messages(result, contract)[key], I18n.t('dry_validation.errors.lteq?', num:)
+    end
+
+    def date?(result, key, contract)
+      assert_includes contract_error_messages(result, contract).keys, key
+      assert_includes contract_error_messages(result, contract)[key], I18n.t('dry_validation.errors.date?')
     end
 
     def date_time?(result, key, contract)
       assert_includes contract_error_messages(result, contract).keys, key
-      assert_includes contract_error_messages(result, contract)[key], 'must be a date/time'
+      assert_includes contract_error_messages(result, contract)[key], I18n.t('dry_validation.errors.date_time?')
     end
 
     def time?(result, key, contract)
       assert_includes contract_error_messages(result, contract).keys, key
-      assert_includes contract_error_messages(result, contract)[key], 'must be time'
-    end
-
-    def invalid?(result, key, contract)
-      assert_includes contract_error_messages(result, contract).keys, key
-      assert_includes contract_error_messages(result, contract)[key], 'invalid'
+      assert_includes contract_error_messages(result, contract)[key], I18n.t('dry_validation.errors.time?')
     end
 
     def invalid_with?(result, key, message, contract)
@@ -115,22 +115,42 @@ module Supports
 
     def array?(result, key, contract)
       assert_includes contract_error_messages(result, contract).keys, key
-      assert_includes contract_error_messages(result, contract)[key], 'must be an array'
+      assert_includes contract_error_messages(result, contract)[key], I18n.t('dry_validation.errors.array?')
     end
 
     def missing?(result, key, contract)
       assert_includes contract_error_messages(result, contract).keys, key
-      assert_includes contract_error_messages(result, contract)[key], 'is missing'
+      assert_includes contract_error_messages(result, contract)[key], I18n.t('dry_validation.errors.key?')
     end
 
     def same_password?(result, key, contract)
       assert_includes contract_error_messages(result, contract).keys, key
-      assert_includes contract_error_messages(result, contract)[key], 'does not match'
+      assert_includes contract_error_messages(result, contract)[key], I18n.t('dry_validation.errors.same_password?')
     end
 
     def uuid_v4?(result, key, contract)
       assert_includes contract_error_messages(result, contract).keys, key
-      assert_includes contract_error_messages(result, contract)[key], 'is not a valid UUID'
+      assert_includes contract_error_messages(result, contract)[key], I18n.t('dry_validation.errors.uuid_v4?')
+    end
+
+    def nil?(result, key, contract)
+      assert_includes contract_error_messages(result, contract).keys, key
+      assert_includes contract_error_messages(result, contract)[key], I18n.t('dry_validation.errors.nil?')
+    end
+
+    def type?(result, key, type, contract)
+      assert_includes contract_error_messages(result, contract).keys, key
+      assert_includes contract_error_messages(result, contract)[key], I18n.t('dry_validation.errors.type?', type:)
+    end
+
+    def hash?(result, key, contract)
+      assert_includes contract_error_messages(result, contract).keys, key
+      assert_includes contract_error_messages(result, contract)[key], I18n.t('dry_validation.errors.hash?')
+    end
+
+    def empty?(result, key, contract)
+      assert_includes contract_error_messages(result, contract).keys, key
+      assert_includes contract_error_messages(result, contract)[key], I18n.t('dry_validation.errors.not.empty?')
     end
 
     private

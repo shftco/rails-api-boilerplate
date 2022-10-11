@@ -15,7 +15,7 @@ module Users
         success?(validate(payload: { email: 'test@test.com' }), :email, CONTRACT)
         filled?(validate(payload: { email: nil }), :email, CONTRACT)
         filled?(validate(payload: { email: '' }), :email, CONTRACT)
-        invalid?(validate(payload: { email: 'invalid email' }), :email, CONTRACT)
+        format?(validate(payload: { email: 'invalid email' }), :email, CONTRACT)
       end
     end
   end
