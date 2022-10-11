@@ -19,38 +19,38 @@ module Supports
       private
 
       def extracts_errors(contract, key, val, top_keys = [])
-        return handle_error(contract, top_keys.concat([key]), val.first) if val.is_a?(Array)
+        return handle_error(top_keys.concat([key]), val.first) if val.is_a?(Array)
 
         val.map do |k, v|
           extracts_errors(contract, k, v, top_keys.concat([key]))
         end
       end
 
-      def handle_error(contract, keys, val)
+      def handle_error(keys, val)
         if Rails.env.test?
           {
             "#{keys.uniq.reverse.join(TEST_KEYS_SPLITTER).to_sym}": val
           }
         else
-          localize_error_message(contract, keys, val)
+          localize_error_message(keys, val)
         end
       end
 
-      def localize_error_message(contract, keys, val)
+      def localize_error_message(keys, val)
         case I18n.locale
         when :tr
-          "#{localize_params(contract, keys).reverse.join(keys_splitter)} #{val}"
+          "#{localize_params(keys).reverse.join(keys_splitter)} #{val}"
         when :en
-          "#{localize_params(contract, keys).join(keys_splitter)} #{val}"
+          "#{localize_params(keys).join(keys_splitter)} #{val}"
         else
           raise "Unsupported locale #{I18n.locale}"
         end
       end
 
-      def localize_params(contract, keys)
+      def localize_params(keys)
         case I18n.locale
         when :tr
-          keys.map { |k| I18n.t("contracts.#{format_contract_name(contract)}.params.#{k}").capitalize }
+          keys.map { |k| I18n.t("contracts.params.#{k}").capitalize }
         when :en
           keys.map(&:capitalize)
         else
