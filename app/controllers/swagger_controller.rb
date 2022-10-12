@@ -5,8 +5,14 @@ class SwaggerController < ApplicationController
     render html: nil, layout: 'layouts/swagger'
   end
 
-  def data
-    swagger_data = SwaggerDocs.swagger_root
+  def v1_data
+    swagger_data = SwaggerDocs.v1_swagger_root
+
+    render json: swagger_data, status: :ok
+  end
+
+  def v2_data
+    swagger_data = SwaggerDocs.v2_swagger_root
 
     render json: swagger_data, status: :ok
   end
