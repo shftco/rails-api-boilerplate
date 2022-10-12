@@ -9,12 +9,5 @@ class ApplicationService
   include Dry::Monads
   include Dry::Monads::Do
   include Supports::Sidekiq::Helper
-
-  def resource_failure(resource)
-    custom_resource_failure(resource.errors.full_messages)
-  end
-
-  def custom_resource_failure(errors)
-    Failure({ errors: })
-  end
+  include Supports::ApplicationService::Helper
 end

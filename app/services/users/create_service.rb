@@ -5,13 +5,9 @@ module Users
     option :params, type: Types::Hash
 
     def call
-      user = User.new(params)
+      user = yield create_resource(User)
 
-      if user.save
-        Success(user)
-      else
-        resource_failure(user)
-      end
+      Success(user)
     end
   end
 end
