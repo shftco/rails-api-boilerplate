@@ -6,14 +6,8 @@ $ rails generate service Facebook::Adset
 
 Then, it will create some service classes for your operations.
 ```
-create  app/services/facebook_service/adset/create.rb
-create  test/services/facebook_service/adset/create_test.rb
-create  app/services/facebook_service/adset/update.rb
-create  test/services/facebook_service/adset/update_test.rb
-create  app/services/facebook_service/adset/destroy.rb
-create  test/services/facebook_service/adset/destroy_test.rb
-create  app/services/facebook_service/adset/list.rb
-create  test/services/facebook_service/adset/list_test.rb
+create  app/services/facebook/adset_service.rb
+create  test/services/facebook/adset_service_test.rb
 ```
 
 You can access service templates from `/lib/generators/service` folder.

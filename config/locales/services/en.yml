@@ -1,0 +1,6 @@
+---
+en:
+  application_service:
+    default:
+      find_resource:
+        error: '%{klass} could not be found'

@@ -1,0 +1,6 @@
+---
+tr:
+  application_service:
+    default:
+      find_resource:
+        error: '%{klass} bulunamadı'
