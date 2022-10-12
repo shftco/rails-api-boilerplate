@@ -33,6 +33,7 @@
     <script src="https://cdn.jsdelivr.net/npm/swagger-ui-dist@3.31.1/swagger-ui-standalone-preset.js"></script>
     <script>
     window.onload = function() {
+      const validatorUrl = 'https://validator.swagger.io/validator';
 
       // Begin Swagger UI call region
       const ui = SwaggerUIBundle({
@@ -46,8 +47,18 @@
           SwaggerUIBundle.plugins.DownloadUrl
         ],
         layout: "StandaloneLayout",
-        validatorUrl: "https://validator.swagger.io/validator",
-        url: "<%= swagger_data_url %>",
+        urls: [
+          {
+            url: '<%= swagger_v1_data_url %>',
+            name: 'V1',
+            validatorUrl: validatorUrl
+          },
+          {
+            url: '<%= swagger_v2_data_url %>',
+            name: 'V2',
+            validatorUrl: validatorUrl
+          }
+        ]
       })
 
       // End Swagger UI call region

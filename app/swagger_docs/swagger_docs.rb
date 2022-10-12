@@ -3,28 +3,37 @@
 class SwaggerDocs
   include Swagger::Blocks
 
-  SWAGGERED_CLASSES = [
-    ## Controllers ##
-    Controllers::Users::TokensController,
-    Controllers::Users::RegistrationsController,
-    Controllers::Users::PasswordsController,
+  COMMON_SWAGGERED_CLASSES = [
     ## Models ##
-    Models::Pagination,
-    Models::Meta,
-    ## Inputs ##
-    Inputs::User::SignInInput,
-    Inputs::User::SignUpInput,
-    Inputs::User::ResetPasswordInput,
-    Inputs::User::UpdatePasswordInput,
-    Inputs::User::RevokeInput,
+    Models::Shared::Pagination,
+    Models::Shared::Meta,
     ## Responses ##
-    Responses::User::SignInResponse,
-    Responses::User::SignUpResponse,
-    Responses::User::ResetPasswordResponse,
-    Responses::User::UpdatePasswordResponse,
-    Responses::ErrorResponse,
-    self
+    Responses::Shared::ErrorResponse
   ].freeze
+
+  V1_SWAGGERED_CLASSES = [
+    ## Controllers ##
+    Controllers::V1::Users::TokensController,
+    Controllers::V1::Users::RegistrationsController,
+    Controllers::V1::Users::PasswordsController,
+    ## Inputs ##
+    Inputs::V1::User::SignInInput,
+    Inputs::V1::User::SignUpInput,
+    Inputs::V1::User::ResetPasswordInput,
+    Inputs::V1::User::UpdatePasswordInput,
+    Inputs::V1::User::RevokeInput,
+    ## Responses ##
+    Responses::V1::User::SignInResponse,
+    Responses::V1::User::SignUpResponse,
+    Responses::V1::User::ResetPasswordResponse,
+    Responses::V1::User::UpdatePasswordResponse,
+    ## Models ##
+    self
+  ].concat(COMMON_SWAGGERED_CLASSES)
+
+  V2_SWAGGERED_CLASSES = [
+    self
+  ].concat(COMMON_SWAGGERED_CLASSES)
 
   swagger_root do
     key :openapi, '3.0.0'
@@ -49,8 +58,18 @@ class SwaggerDocs
   end
 
   class << self
-    def swagger_root
-      swagger_data = Swagger::Blocks.build_root_json(SWAGGERED_CLASSES)
+    def v1_swagger_root
+      build_swagger_root(V1_SWAGGERED_CLASSES)
+    end
+
+    def v2_swagger_root
+      build_swagger_root(V2_SWAGGERED_CLASSES)
+    end
+
+    private
+
+    def build_swagger_root(classes)
+      swagger_data = Swagger::Blocks.build_root_json(classes)
 
       swagger_data[:components][:securitySchemes] = {
         bearerAuth: {

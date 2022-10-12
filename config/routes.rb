@@ -7,14 +7,13 @@ Rails.application.routes.draw do
   root 'swagger#index'
 
   # Swagger documentation
-  scope :swagger, as: 'swagger' do
-    get '/', to: 'swagger#index', as: :root
-    get '/data', to: 'swagger#data', as: :data
-  end
+  draw :swagger
 
-  draw :authentication
-
+  # API routes
   defaults format: :json do
-    # API routes
+    # V1
+    namespace :v1 do
+      draw :authentication
+    end
   end
 end
