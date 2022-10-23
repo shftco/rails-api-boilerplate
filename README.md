@@ -1,11 +1,11 @@
 ![build & test & quality](https://github.com/cousins-factory/rails-api-boilerplate/actions/workflows/main.yml/badge.svg?branch=main)
 [![Ruby Style Guide](https://img.shields.io/badge/code_style-rubocop-brightgreen.svg)](https://github.com/rubocop/rubocop)
 ![Ruby Version](https://img.shields.io/badge/ruby_version-3.1.2-blue.svg)
-![Rails Version](https://img.shields.io/badge/rails_version-7.0.3.1-c52f24.svg)
+![Rails Version](https://img.shields.io/badge/rails_version-7.0.4-c52f24.svg)
 [![Swagger documentation](https://img.shields.io/badge/swagger_documentation-84e92c.svg?&logo=swagger&logoColor=black)](docs/SWAGGER.md)
 
 # Rails API Boilerplate
-![cover](docs/cover.jpeg)
+![cover](docs/cover.png)
 
 # How to Works?
 ```mermaid
