@@ -23,7 +23,8 @@ module V1
 
         body = load_body(response)
 
-        assert_equal params[:email], body.user.email
+        assert_equal params[:email], body.resource_owner.email
+        assert_equal doorkeeper_application.id, body.application.id
         assert_response :created
       end
 

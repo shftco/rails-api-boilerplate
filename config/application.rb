@@ -27,7 +27,14 @@ module RailsApiBoilerplate
     # config.eager_load_paths << Rails.root.join("extras")
 
     # Require supports
-    Dir[Rails.root.join('lib/supports/**/*.rb')].each { |file| require file }
+    Dir[Rails.root.join('lib/supports/**/*.rb')].each do |file|
+      Rails.configuration.cache_classes ? require(file) : load(file)
+    end
+
+    # Require decorators
+    Dir[Rails.root.join('lib/overrides/**/*._decorator.rb')].each do |file|
+      Rails.configuration.cache_classes ? require(file) : load(file)
+    end
 
     config.generators do |g|
       g.test_framework :test_unit, fixture: false

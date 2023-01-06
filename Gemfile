@@ -124,3 +124,9 @@ gem 'sidekiq', '~> 6.4', '>= 6.4.1'
 
 # Object-based searching [https://github.com/activerecord-hackery/ransack]
 gem 'ransack', github: 'activerecord-hackery/ransack'
+
+# Blueprinter is a JSON Object Presenter for Ruby [https://github.com/procore/blueprinter]
+gem 'blueprinter', '~> 0.25.3'
+
+# The fastest JSON parser and object serializer [https://github.com/ohler55/oj]
+gem 'oj', '~> 3.13', '>= 3.13.23'
