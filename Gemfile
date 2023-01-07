@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.1.2'
+ruby '3.2.0'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem 'rails', '~> 7.0', '>= 7.0.4'
@@ -43,7 +43,7 @@ group :development, :test do
   gem 'debug', platforms: %i[ mri mingw x64_mingw ]
 
   # A library for generating fake data [https://github.com/faker-ruby/faker]
-  gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'master'
+  gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'main'
 
   # Pretty print your Ruby objects [https://github.com/awesome-print/awesome_print]
   gem 'awesome_print'
@@ -99,16 +99,16 @@ gem 'swagger-blocks', '~> 3.0'
 gem 'kaminari', '~> 1.2', '>= 1.2.2'
 
 # Useful, common monads in idiomatic Ruby [https://github.com/dry-rb/dry-monads]
-gem 'dry-monads', '~> 1.4'
+gem 'dry-monads', '~> 1.6'
 
 # A simple validation library [https://github.com/dry-rb/dry-validation]
-gem 'dry-validation', '~> 1.8', '>= 1.8.1'
+gem 'dry-validation', '~> 1.10'
 
 # Typed structs and value objects [https://github.com/dry-rb/dry-struct]
-gem 'dry-struct', '~> 1.4'
+gem 'dry-struct', '~> 1.6'
 
 # Type system for Ruby supporting coercions, constraints and complex types like structs, value objects, enums etc [https://github.com/dry-rb/dry-types]
-gem 'dry-types', '~> 1.5', '>= 1.5.1'
+gem 'dry-types', '~> 1.7'
 
 # DSL for declaring params and options of the initializer [https://github.com/dry-rb/dry-initializer]
 gem 'dry-initializer', '~> 3.1', '>= 3.1.1'
@@ -117,10 +117,10 @@ gem 'dry-initializer', '~> 3.1', '>= 3.1.1'
 gem 'devise', '~> 4.8', '>= 4.8.1'
 
 # Doorkeeper is an OAuth 2 provider for Rails and Grape [https://github.com/doorkeeper-gem/doorkeeper/]
-gem 'doorkeeper', '~> 5.5', '>= 5.5.4'
+gem 'doorkeeper', '~> 5.6', '>= 5.6.2'
 
 # Simple, efficient background processing for Ruby [https://github.com/mperham/sidekiq]
-gem 'sidekiq', '~> 6.4', '>= 6.4.1'
+gem 'sidekiq', '< 8'
 
 # Object-based searching [https://github.com/activerecord-hackery/ransack]
-gem 'ransack', github: 'activerecord-hackery/ransack'
+gem 'ransack', github: 'activerecord-hackery/ransack', branch: 'main'
