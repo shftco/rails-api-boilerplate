@@ -54,7 +54,7 @@ module Responses
 
               property :scopes do
                 key :type, :array
-                
+
                 items do
                   key :type, :string
                   key :example, 'public'
