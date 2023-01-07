@@ -9,11 +9,11 @@ module Responses
         swagger_component do
           schema :UserSignUpSuccessResponse do
             key :type, :object
-            key :required, %i[user access_token token_type expires_in refresh_token created_at]
+            key :required, %i[token token_type expires_in refresh_token created_at application resource_owner]
 
-            property :user do
+            property :resource_owner do
               key :type, :object
-              key :required, %i[id type email]
+              key :required, %i[id email created_at updated_at]
 
               property :id do
                 key :type, :string
@@ -21,18 +21,58 @@ module Responses
                 key :example, 'e7c8f8f0-e8e0-4b0f-b8b1-f8f8f8f8f8f8'
               end
 
-              property :type do
-                key :type, :string
-                key :example, 'User'
-              end
-
               property :email do
                 key :type, :string
                 key :example, 'test@test.com'
               end
+
+              property :created_at do
+                key :type, :datetime
+                key :example, '2021-11-21T12:00:00.000Z'
+              end
+
+              property :updated_at do
+                key :type, :datetime
+                key :example, '2021-11-21T12:00:00.000Z'
+              end
             end
 
-            property :access_token do
+            property :application do
+              key :type, :object
+              key :required, %i[id name created_at updated_at]
+
+              property :id do
+                key :type, :string
+                key :format, :uuid
+                key :example, 'e7c8f8f0-e8e0-4b0f-b8b1-f8f8f8f8f8f8'
+              end
+
+              property :name do
+                key :type, :string
+                key :example, 'Test App'
+              end
+
+              property :scopes do
+                key :type, :array
+
+                items do
+                  key :type, :string
+                  key :example, 'public'
+                end
+              end
+
+              property :created_at do
+                key :type, :datetime
+                key :example, '2021-11-21T12:00:00.000Z'
+              end
+
+              property :updated_at do
+                key :type, :datetime
+                key :example, '2021-11-21T12:00:00.000Z'
+              end
+            end
+
+            property :token do
               key :type, :string
               key :example, 'e7c8f8f0-e8e0-4b0f-b8b1-f8f8f8f8f8f8'
             end
@@ -55,6 +95,12 @@ module Responses
             property :created_at do
               key :type, :integer
               key :example, 1_661_719_307
+            end
+
+            property :id do
+              key :type, :string
+              key :format, :uuid
+              key :example, 'e7c8f8f0-e8e0-4b0f-b8b1-f8f8f8f8f8f8'
             end
           end
         end

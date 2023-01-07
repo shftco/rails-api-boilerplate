@@ -490,5 +490,5 @@ Doorkeeper.configure do
   # realm "Doorkeeper"
 end
 
-Doorkeeper::OAuth::TokenResponse.prepend Supports::Doorkeeper::CustomTokenResponse
-Doorkeeper::OAuth::ErrorResponse.prepend Supports::Doorkeeper::CustomErrorResponse
+Doorkeeper::OAuth::TokenResponse.prepend Overrides::Doorkeeper::TokenResponseDecorator
+Doorkeeper::OAuth::ErrorResponse.prepend Overrides::Doorkeeper::ErrorResponseDecorator

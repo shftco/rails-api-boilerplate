@@ -6,7 +6,7 @@ module V1
       include Doorkeeper::Authorize
 
       def create
-        operation = ::Users::Passwords::CreateOperation.new(params: password_params).call
+        operation = V1::UsersOperation::Passwords::Create.new(params: password_params).call
 
         if operation.success?
           render json: operation.success, status: :ok
@@ -16,7 +16,7 @@ module V1
       end
 
       def update
-        operation = ::Users::Passwords::UpdateOperation.new(params: password_params).call
+        operation = V1::UsersOperation::Passwords::Update.new(params: password_params).call
 
         if operation.success?
           render json: operation.success, status: :ok
