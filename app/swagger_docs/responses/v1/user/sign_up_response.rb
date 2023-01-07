@@ -9,7 +9,7 @@ module Responses
         swagger_component do
           schema :UserSignUpSuccessResponse do
             key :type, :object
-            key :required, %i[user access_token token_type expires_in refresh_token created_at]
+            key :required, %i[token token_type expires_in refresh_token created_at application resource_owner]
 
             property :resource_owner do
               key :type, :object
@@ -53,8 +53,12 @@ module Responses
               end
 
               property :scopes do
-                key :type, :string
-                key :example, 'public'
+                key :type, :array
+
+                items do
+                  key :type, :string
+                  key :example, 'public'
+                end
               end
 
               property :created_at do
@@ -91,11 +95,6 @@ module Responses
             property :created_at do
               key :type, :integer
               key :example, 1_661_719_307
-            end
-
-            property :revoked_at do
-              key :type, :datetime
-              key :example, '2021-11-21T12:00:00.000Z'
             end
 
             property :id do

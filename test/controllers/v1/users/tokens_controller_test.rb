@@ -22,14 +22,22 @@ module V1
 
         body = load_body(response)
 
-        assert_respond_to body, :access_token
+        assert_respond_to body, :token
         assert_respond_to body, :refresh_token
         assert_respond_to body, :token_type
         assert_respond_to body, :expires_in
         assert_respond_to body, :created_at
-        assert_respond_to body.user, :email
-        assert_respond_to body.user, :type
-        assert_respond_to body.user, :id
+        assert_respond_to body.resource_owner, :id
+        assert_respond_to body.resource_owner, :email
+        assert_equal body.resource_owner.email, user.email
+        assert_respond_to body.resource_owner, :created_at
+        assert_respond_to body.resource_owner, :updated_at
+        assert_respond_to body.application, :id
+        assert_equal body.application.id, doorkeeper_application.id
+        assert_respond_to body.application, :name
+        assert_respond_to body.application, :scopes
+        assert_respond_to body.application, :created_at
+        assert_respond_to body.application, :updated_at
         assert_response :success
       end
 
@@ -88,11 +96,22 @@ module V1
 
         body = load_body(response)
 
-        assert_respond_to body, :access_token
+        assert_respond_to body, :token
         assert_respond_to body, :refresh_token
         assert_respond_to body, :token_type
         assert_respond_to body, :expires_in
         assert_respond_to body, :created_at
+        assert_respond_to body.resource_owner, :id
+        assert_respond_to body.resource_owner, :email
+        assert_equal body.resource_owner.email, user.email
+        assert_respond_to body.resource_owner, :created_at
+        assert_respond_to body.resource_owner, :updated_at
+        assert_respond_to body.application, :id
+        assert_equal body.application.id, doorkeeper_application.id
+        assert_respond_to body.application, :name
+        assert_respond_to body.application, :scopes
+        assert_respond_to body.application, :created_at
+        assert_respond_to body.application, :updated_at
         assert_response :success
       end
 

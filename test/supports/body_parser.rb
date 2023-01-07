@@ -22,7 +22,7 @@ module Supports
 
     def pagination_present?(response)
       pagination = parse_meta(response).pagination
-      expected_keys = %i[current previous next limit total_pages total_count]
+      expected_keys = %i[current previous next limit total_pages total_count first_page last_page]
 
       expected_keys == pagination.keys
     end

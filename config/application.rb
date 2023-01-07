@@ -31,8 +31,8 @@ module RailsApiBoilerplate
       Rails.configuration.cache_classes ? require(file) : load(file)
     end
 
-    # Require decorators
-    Dir[Rails.root.join('lib/overrides/**/*._decorator.rb')].each do |file|
+    # Require overrides
+    Dir[Rails.root.join('lib/overrides/**/*.rb')].each do |file|
       Rails.configuration.cache_classes ? require(file) : load(file)
     end
 

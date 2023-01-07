@@ -21,6 +21,8 @@ module Models
         include_view :with_resource_owner
         include_view :with_application
         include_view :standard
+
+        exclude :revoked_at
       end
     end
   end

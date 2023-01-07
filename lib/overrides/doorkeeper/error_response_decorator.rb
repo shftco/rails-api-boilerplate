@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 # https://github.com/doorkeeper-gem/doorkeeper/blob/main/lib/doorkeeper/oauth/error_response.rb
-module Supports
+module Overrides
   module Doorkeeper
-    module CustomErrorResponse
+    module ErrorResponseDecorator
       def body
         {
           errors: custom_errors

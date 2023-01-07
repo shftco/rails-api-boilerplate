@@ -10,8 +10,10 @@ module Api
             previous: collection.prev_page,
             next: collection.next_page,
             limit: collection.limit_value,
-            totalPages: collection.total_pages,
-            totalCount: collection.total_count
+            total_pages: collection.total_pages,
+            total_count: collection.total_count,
+            first_page: collection.first_page?,
+            last_page: collection.last_page?
           }
         }
       end
